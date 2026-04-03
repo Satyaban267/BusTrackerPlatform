@@ -1,0 +1,45 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>Fast, Reliable Bus Tracking</h1>
+    <p>Find the best route, price, and operator in seconds.</p>
+  </div>
+</section>
+
+<div class="bus-container">
+  <div class="search-row">
+    <input
+      type="text"
+      placeholder="Search by operator, route, or ID"
+      [(ngModel)]="searchTerm"
+      (input)="onSearch()"
+      aria-label="Search bus routes"
+    />
+    <span class="search-hint">Tap to search and see route results update instantly.</span>
+  </div>
+
+  <div class="status-message">
+    <ng-container *ngIf="isLoading">
+      <p>Loading buses...</p>
+    </ng-container>
+
+    <ng-container *ngIf="error && !isLoading">
+      <p class="error">{{ error }}</p>
+    </ng-container>
+
+    <ng-container *ngIf="!isLoading && !error && filteredBuses.length === 0">
+      <p>No routes found. Try a different search term.</p>
+    </ng-container>
+  </div>
+
+  <div class="bus-grid" *ngIf="!isLoading && !error && filteredBuses.length > 0">
+    <div class="bus-card" *ngFor="let bus of filteredBuses; trackBy: trackById">
+      <div class="card-header">
+        <h3>{{ bus.operatorName }}</h3>
+        <span class="badge">#{{ bus.id }}</span>
+      </div>
+      <p class="route"><strong>Route:</strong> {{ bus.route }}</p>
+      <p class="price"><strong>Price</strong> ${{ bus.generalPrice }}</p>
+      <button class="detail-btn" (click)="onViewDetails(bus)">View Details</button>
+    </div>
+  </div>
+</div>

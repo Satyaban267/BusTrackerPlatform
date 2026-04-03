@@ -1,0 +1,14 @@
+# .NET Core
+bin/
+obj/
+.vs/
+appsettings.Development.json
+
+# Angular
+node_modules/
+dist/
+.angular/
+
+# General OS files
+.DS_Store
+Thumbs.db

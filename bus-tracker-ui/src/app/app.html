@@ -1,0 +1,54 @@
+<nav class="top-nav">
+  <div class="app-brand">BusTracker Pro</div>
+  <div class="top-links">
+    <a href="#" class="active">Home</a>
+    <a href="#">Routes</a>
+    <a href="#">Pricing</a>
+  </div>
+</nav>
+
+<main class="app-main">
+  <router-outlet></router-outlet>
+</main>
+
+<style>
+  .top-nav {
+    width: 100%;
+    background: linear-gradient(90deg, #0d47a1, #1976d2);
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.18);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  .app-brand {
+    font-size: 1.45rem;
+    font-weight: 700;
+  }
+
+  .top-links a {
+    margin-left: 18px;
+    color: rgba(255,255,255,0.82);
+    padding: 4px 6px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .top-links a.active,
+  .top-links a:hover {
+    color: white;
+    background: rgba(255,255,255,0.16);
+  }
+
+  .app-main {
+    background: linear-gradient(180deg, #f5f7fb 0%, #ffffff 100%);
+    min-height: calc(100vh - 64px);
+    padding: 18px 0;
+  }
+</style>
