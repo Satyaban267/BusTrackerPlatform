@@ -1,13 +1,90 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="light">
 <head>
   <meta charset="utf-8">
-  <title>BusTrackerUi</title>
+  <title>Gramin Path</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container": "#ffe9e4",
+            "on-primary-fixed": "#3b0800",
+            "on-surface": "#2b1611",
+            "on-surface-variant": "#5a413a",
+            "tertiary-fixed": "#ffdcc7",
+            "outline-variant": "#e2bfb6",
+            "error": "#ba1a1a",
+            "primary-fixed-dim": "#ffb5a1",
+            "on-tertiary-fixed": "#311300",
+            "surface-tint": "#b22c01",
+            "surface-container-highest": "#ffdad2",
+            "surface": "#fff8f6",
+            "surface-variant": "#ffdad2",
+            "on-secondary": "#ffffff",
+            "on-tertiary-container": "#ffe2d2",
+            "surface-dim": "#f9d1c8",
+            "background": "#fff8f6",
+            "on-secondary-fixed": "#002204",
+            "inverse-primary": "#ffb5a1",
+            "inverse-surface": "#432a25",
+            "secondary-fixed-dim": "#88d982",
+            "on-tertiary-fixed-variant": "#723600",
+            "secondary": "#1b6d24",
+            "tertiary-container": "#a45100",
+            "surface-container-lowest": "#ffffff",
+            "primary-container": "#bf360c",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#a3f69c",
+            "on-primary-container": "#ffe1da",
+            "tertiary-fixed-dim": "#ffb787",
+            "surface-container-high": "#ffe2db",
+            "primary-fixed": "#ffdbd1",
+            "surface-container-low": "#fff0ed",
+            "surface-bright": "#fff8f6",
+            "on-background": "#2b1611",
+            "tertiary": "#803d00",
+            "on-tertiary": "#ffffff",
+            "secondary-container": "#a0f399",
+            "outline": "#8e7069",
+            "on-secondary-container": "#217128",
+            "on-primary-fixed-variant": "#881f00",
+            "on-primary": "#ffffff",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "primary": "#982400",
+            "inverse-on-surface": "#ffede9",
+            "on-secondary-fixed-variant": "#005312"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "body": ["Public Sans"],
+            "label": ["Public Sans"]
+          }
+        },
+      },
+    }
+  </script>
 </head>
-<body>
+<body class="bg-background text-on-background min-h-screen">
   <app-root></app-root>
 </body>
 </html>

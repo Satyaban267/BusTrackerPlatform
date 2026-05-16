@@ -1,0 +1,29 @@
+<header class="app-header glass sticky top-0 z-50">
+  <div class="container flex items-center justify-between h-20">
+    <div class="logo flex items-center gap-sm cursor-pointer" routerLink="/">
+      <span class="material-symbols-rounded icon-filled" style="color: var(--color-primary); font-size: 32px;">local_fire_department</span>
+      <h1 class="h3" style="margin: 0; color: var(--color-primary);">Gramin Path</h1>
+    </div>
+    
+    <nav class="main-nav flex gap-lg items-center">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+        <span class="material-symbols-rounded">directions_bus</span> Buses
+      </a>
+      <a routerLink="/suggest" routerLinkActive="active" class="nav-link">
+        <span class="material-symbols-rounded">route</span> Routes
+      </a>
+      <a routerLink="/register" routerLinkActive="active" class="nav-link">
+        <span class="material-symbols-rounded">app_registration</span> Register
+      </a>
+    </nav>
+
+    <div class="header-actions flex gap-md items-center">
+      <button class="btn-icon">
+        <span class="material-symbols-rounded">notifications</span>
+      </button>
+      <button class="btn btn-primary btn-sm" routerLink="/admin/login">
+        <span class="material-symbols-rounded">admin_panel_settings</span> Admin
+      </button>
+    </div>
+  </div>
+</header>

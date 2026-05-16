@@ -1,0 +1,160 @@
+﻿<div class="bg-surface text-on-surface min-h-screen pb-24">
+
+<!-- Top Navigation Bar -->
+<nav class="w-full h-16 bg-[#fff0ed] dark:bg-stone-900 shadow-none sticky top-0 z-50">
+<div class="flex justify-between items-center px-6 w-full max-w-7xl mx-auto h-full">
+<div class="text-2xl font-bold text-[#982400] tracking-tight">The Digital Hearth</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#982400] transition-colors" href="#">Buses</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#982400] transition-colors" href="#">Routes</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#982400] transition-colors" href="#">My Trips</a>
+</div>
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-[#982400] cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-[#982400] cursor-pointer" data-icon="person">person</span>
+</div>
+</div>
+</nav>
+<main class="max-w-4xl mx-auto px-4 py-8">
+<!-- Hero Section -->
+<div class="relative overflow-hidden rounded-3xl mb-12 bg-surface-container-high p-8 md:p-12 shadow-sm">
+<div class="relative z-10 max-w-lg">
+<h1 class="text-4xl md:text-5xl font-extrabold text-on-surface leading-tight mb-4">Help Your Community: Suggest a Bus</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed">Your knowledge keeps the village moving. Contribute bus details and help your neighbors travel better.</p>
+</div>
+<div class="absolute -right-16 -top-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute right-0 bottom-0 opacity-20 hidden md:block">
+<img alt="Bus illustration" class="w-80 h-auto object-contain" data-alt="A warm and inviting illustration of a classic Indian village bus traveling through a golden harvest landscape at dawn. The style is modern editorial with rich terracotta and ochre tones, capturing a sense of reliable rural transport. Soft morning sunlight filters through the scene, creating a peaceful and helpful community-focused atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyHHJPdnkzmHyedRjVf0ZKWC2khmfxJE7i6VBUcugeAeOgmTydhiwFl-7GvKr6q_a320Jj7-4sTmhtreewep66-rPyuiusgSegD1e08JE1Jqo6t5ocAl5HfOrsRt5WgFTtRQq7csZIhinGFibFLHf5xT7WYTWWwGCHj5veqeRqQHUbXagUk-RPeS0j2HjGjx0ayVoi-WzNUAYe971yed4zDvHLUchg0-WXryH13BWj1n2ZKcIxcZPDIoNkVYiGb9gTTFo2SaLt3hl4"/>
+</div>
+</div>
+<!-- Form Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-8">
+<form class="space-y-6">
+<div class="bg-surface-container-low p-6 md:p-8 rounded-[2rem] space-y-8">
+<!-- Personal Info -->
+<div class="space-y-4">
+<label class="block text-sm font-bold uppercase tracking-widest text-primary mb-2">Contributor Info</label>
+<div class="relative">
+<span class="absolute left-4 top-4 material-symbols-outlined text-outline" data-icon="person">person</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-on-surface placeholder-on-surface-variant/60" placeholder="Your Name" type="text"/>
+</div>
+</div>
+<!-- Bus Details Grid -->
+<div class="space-y-4">
+<label class="block text-sm font-bold uppercase tracking-widest text-primary mb-2">Bus Particulars</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="relative">
+<span class="absolute left-4 top-4 material-symbols-outlined text-outline" data-icon="directions_bus">directions_bus</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-on-surface placeholder-on-surface-variant/60" placeholder="Bus Name/Number" type="text"/>
+</div>
+<div class="relative">
+<span class="absolute left-4 top-4 material-symbols-outlined text-outline" data-icon="schedule">schedule</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-on-surface placeholder-on-surface-variant/60" placeholder="Start Timing (e.g. 8:00 AM)" type="text"/>
+</div>
+</div>
+</div>
+<!-- Route Thread Visual Component -->
+<div class="space-y-4">
+<label class="block text-sm font-bold uppercase tracking-widest text-primary mb-2">Route Details</label>
+<div class="flex flex-col gap-6 relative pl-8 py-2">
+<!-- The Route Thread Organic Line -->
+<div class="absolute left-3 top-0 bottom-0 w-1 bg-secondary-fixed rounded-full"></div>
+<div class="relative">
+<div class="absolute -left-7 top-1/2 -translate-y-1/2 w-4 h-4 bg-surface border-4 border-secondary rounded-full z-10 shadow-sm"></div>
+<div class="relative">
+<span class="absolute left-4 top-4 material-symbols-outlined text-outline" data-icon="location_on">location_on</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-on-surface placeholder-on-surface-variant/60" placeholder="Source (Village)" type="text"/>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -left-7 top-1/2 -translate-y-1/2 w-4 h-4 bg-secondary rounded-full z-10 shadow-sm"></div>
+<div class="relative">
+<span class="absolute left-4 top-4 material-symbols-outlined text-outline" data-icon="apartment">apartment</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-on-surface placeholder-on-surface-variant/60" placeholder="Destination (City)" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Contact -->
+<div class="space-y-4">
+<label class="block text-sm font-bold uppercase tracking-widest text-primary mb-2">Contact Details</label>
+<div class="relative">
+<span class="absolute left-4 top-4 material-symbols-outlined text-outline" data-icon="call">call</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-on-surface placeholder-on-surface-variant/60" placeholder="Bus Driver/Operator Contact Details" type="tel"/>
+</div>
+</div>
+<button class="w-full py-5 bg-primary text-white rounded-full font-bold text-lg shadow-xl shadow-primary/20 flex items-center justify-center gap-3 active:scale-95 transition-transform" type="submit">
+                            Submit Suggestion
+                            <span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Information Card -->
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-tertiary/5 border border-tertiary/10 p-6 rounded-3xl">
+<div class="flex items-start gap-4">
+<div class="bg-tertiary-fixed text-on-tertiary-fixed p-3 rounded-2xl">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface mb-2">Admin Review</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">To ensure the highest reliability for our community, all suggestions are reviewed by a Gramin Path administrator before being listed. This usually takes less than 24 hours.</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-3xl">
+<h3 class="font-bold text-on-surface mb-4">Why contribute?</h3>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="w-2 h-2 bg-secondary rounded-full"></span>
+                            Help students reach schools on time
+                        </li>
+<li class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="w-2 h-2 bg-secondary rounded-full"></span>
+                            Assist farmers in reaching city markets
+                        </li>
+<li class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="w-2 h-2 bg-secondary rounded-full"></span>
+                            Build a safer community travel guide
+                        </li>
+</ul>
+</div>
+<!-- Bento Style Image Grid -->
+<div class="grid grid-cols-2 gap-3">
+<div class="h-32 rounded-2xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A detailed close-up of a rustic wooden bus station sign in a rural Indian village. The sign is weathered but beautiful, with handwritten local language characters. The background shows a soft-focus village square during the golden hour, emphasizing community and heritage. The colors are warm earthy browns and faded greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD05PNwi1CZDAifcb_aw8Zr3NaszF2IhGO9s_2UNYs21lEl0YUUNGJjyplWW1SCsIkFFgFstNaWnncROgyJY0-wEWDBlOYWB26uifHLO4dFEkDAAfk_o1huDkWdJy36-N26i6ji7G4YJ-Bcbsafvk_IXZR0SwLQXxyG41IHSmlHusdvs44maal-CO3-9aNSnNkugyXeJvCjMRzXfEB3XQxzlGFzH5zngv_MCCQcc1twPqssWGS0D3SqFTNpxz4CserVr5tKjZ8RcMh4"/>
+</div>
+<div class="h-32 rounded-2xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A group of smiling village residents of diverse ages gathered together under a large banyan tree, representing a strong sense of community. The lighting is warm and natural, creating a welcoming and friendly atmosphere. The scene is depicted in a clean, modern style with a palette of terracotta and deep foliage green." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFKPkdOEXeodR462hBcmFYVb4DcayMBz0D9Kr7mciOWIeB0oPhhKVnj9hgZvv_OgeijfGCsfuXnjdWFiF2Y7qJpCgN2Q0AwxtjFk_Bh3JEH_ZXMzEEVcBFSUwR129J9W0eD3sIdufkc0zWFcjZRC3cH8H9fzXoqL1xIVMdfzHNsomGBW8wvfyXG5QNLz1dG6P08kMuLyGDrxijNCzporTktDeynxPD5b6bnfrFHV3eqaD3G6WpcQtzZ2LRWlJiGE-wkhvi5ytDrWDT"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-[#fff8f6]/80 backdrop-blur-xl border-t border-[#e2bfb6]/15 shadow-[0_-4px_20px_rgba(43,22,17,0.06)]">
+<div class="flex flex-col items-center justify-center text-stone-500 py-2">
+<span class="material-symbols-outlined" data-icon="directions_bus">directions_bus</span>
+<span class="font-public-sans text-[11px] uppercase tracking-wider font-semibold">Buses</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-500 py-2">
+<span class="material-symbols-outlined" data-icon="store">store</span>
+<span class="font-public-sans text-[11px] uppercase tracking-wider font-semibold">Stops</span>
+</div>
+<!-- Center Action (Active Context for 'Suggesting' - logically part of contributions/bookings flow) -->
+<div class="flex flex-col items-center justify-center bg-[#982400] text-white rounded-full p-3 w-14 h-14 -mt-6 shadow-lg active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="add" style="font-variation-settings: 'FILL' 1;">add</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-500 py-2">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-public-sans text-[11px] uppercase tracking-wider font-semibold">Trips</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-500 py-2">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-public-sans text-[11px] uppercase tracking-wider font-semibold">Profile</span>
+</div>
+</nav>
+
+</div>

@@ -1,14 +1,38 @@
 import { Routes } from '@angular/router';
-import { BusListComponent } from './features/bus-list/bus-list';
+import { Home } from './pages/home/home';
+import { AdminLogin } from './pages/admin-login/admin-login';
+import { AdminDashboard } from './pages/admin-dashboard/admin-dashboard';
+import { Search } from './pages/search/search';
+import { BusDetails } from './pages/bus-details/bus-details';
+import { RegisterBus } from './pages/register-bus/register-bus';
+import { SuggestBus } from './pages/suggest-bus/suggest-bus';
+import { MainLayout } from './core/layouts/main-layout';
+import { AdminLayout } from './core/layouts/admin-layout';
 
 export const routes: Routes = [
-  // When the URL is exactly the root (e.g., localhost:4200/)
-  { 
-    path: '', 
-    component: BusListComponent,
-    title: 'Home - Bus Tracker' // Optional: Changes the browser tab name
+  {
+    path: '',
+    component: MainLayout,
+    children: [
+      { path: '', component: Home, title: 'Gramin Path - Your Way Home' },
+      { path: 'search', component: Search, title: 'Search Buses' },
+      { path: 'bus/:id', component: BusDetails, title: 'Bus Live Tracking' },
+      { path: 'register', component: RegisterBus, title: 'Register Bus Service' },
+      { path: 'suggest', component: SuggestBus, title: 'Suggest a Route' },
+    ]
   },
-  
-  // Later, you can add more pages here! For example:
-  // { path: 'details/:id', component: BusDetailsComponent },
+  {
+    path: 'admin',
+    children: [
+      { path: 'login', component: AdminLogin, title: 'Admin Login' },
+      {
+        path: '',
+        component: AdminLayout,
+        children: [
+          { path: 'dashboard', component: AdminDashboard, title: 'Service Approvals' },
+        ]
+      }
+    ]
+  },
+  { path: '**', redirectTo: '' }
 ];

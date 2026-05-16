@@ -1,0 +1,17 @@
+.admin-content {
+  max-width: 1200px;
+}
+
+.badge-surface {
+  background: var(--color-surface);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+}
+
+.italic {
+  font-style: italic;
+}
+
+.text-main {
+  color: var(--color-text-main);
+}

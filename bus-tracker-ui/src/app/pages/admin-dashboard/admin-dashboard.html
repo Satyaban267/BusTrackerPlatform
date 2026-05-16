@@ -1,0 +1,134 @@
+<div class="admin-content animate-fade">
+  <!-- Header area -->
+  <header class="flex justify-between items-center mb-xl">
+    <div>
+      <h1 class="h2 mb-xs">Service Approvals</h1>
+      <p class="subtitle" style="font-size: 1rem;">Review and manage the latest fleet additions and community requests.</p>
+    </div>
+    <div class="flex gap-md">
+      <div class="card glass flex items-center gap-md py-md px-lg">
+        <span class="material-symbols-rounded icon-filled" style="color: var(--color-primary);">pending_actions</span>
+        <div>
+          <p class="text-xs">Pending Tasks</p>
+          <p class="text-bold h3" style="font-size: 1.25rem;">14 Requests</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Tab Switcher -->
+  <div class="flex gap-md mb-xl">
+    <button class="btn btn-primary">
+      <span class="material-symbols-rounded">verified</span> New Registrations
+    </button>
+    <button class="btn btn-secondary">
+      <span class="material-symbols-rounded">group</span> Community Suggestions
+    </button>
+  </div>
+
+  <!-- List of Requests -->
+  <div class="flex flex-col gap-xl">
+    
+    <!-- Entry 1 -->
+    <div class="card flex gap-xl items-start relative overflow-hidden" style="border-left: 6px solid var(--color-tertiary);">
+      <div class="w-1/4" style="flex: 0 0 250px;">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=600" 
+             class="w-full h-40 object-cover rounded-md shadow-sm" alt="Bus">
+      </div>
+
+      <div class="flex-1">
+        <div class="flex justify-between items-start mb-md">
+          <div>
+            <span class="badge badge-primary mb-sm">Express Service</span>
+            <h3 class="h3">Hearth-Link #442</h3>
+          </div>
+          <div class="text-right">
+            <p class="text-xs">Owner Contact</p>
+            <p class="text-bold">+91 98765-43210</p>
+            <p class="text-small italic">Rajesh Kumar Motors</p>
+          </div>
+        </div>
+
+        <!-- Route Visualization -->
+        <div class="flex items-center gap-xl py-sm">
+          <div class="flex flex-col items-center">
+            <div class="w-3 h-3 rounded-full" style="background: var(--color-secondary);"></div>
+            <div style="width: 2px; height: 40px; background: var(--color-border);"></div>
+            <div class="w-3 h-3 rounded-full" style="background: var(--color-primary);"></div>
+          </div>
+          <div class="flex flex-col justify-between h-16">
+            <div>
+              <p class="text-xs" style="line-height: 1;">Departure</p>
+              <p class="text-bold">Main Square Terminal</p>
+            </div>
+            <div>
+              <p class="text-xs" style="line-height: 1;">Destination</p>
+              <p class="text-bold">Riverside Community Hub</p>
+            </div>
+          </div>
+          
+          <div class="ml-xl border-l pl-xl">
+            <p class="text-xs mb-xs">Proposed Timings</p>
+            <div class="flex gap-sm">
+              <span class="badge badge-surface">06:30 AM</span>
+              <span class="badge badge-surface">02:15 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-sm">
+        <button class="btn btn-primary" style="background: var(--color-secondary);">
+          <span class="material-symbols-rounded">check_circle</span> Approve
+        </button>
+        <button class="btn btn-secondary" style="color: var(--color-error);">
+          <span class="material-symbols-rounded">cancel</span> Reject
+        </button>
+      </div>
+    </div>
+
+    <!-- Entry 2: Suggestion -->
+    <div class="card flex gap-xl items-start relative overflow-hidden" style="border-left: 6px solid var(--color-secondary);">
+      <div class="w-1/4 flex items-center justify-center bg-surface rounded-md h-40" style="flex: 0 0 250px;">
+        <span class="material-symbols-rounded" style="font-size: 64px; color: var(--color-secondary); opacity: 0.3;">volunteer_activism</span>
+      </div>
+
+      <div class="flex-1">
+        <div class="flex justify-between items-start mb-md">
+          <div>
+            <span class="badge badge-primary" style="background: var(--color-primary-light);">New Route Idea</span>
+            <h3 class="h3">Valley Primary School Loop</h3>
+          </div>
+          <div class="text-right">
+            <p class="text-xs">Suggested By</p>
+            <p class="text-bold">Amit S. & 42 others</p>
+          </div>
+        </div>
+
+        <p class="text-muted text-small bg-surface p-md rounded-md border">
+          "Currently students have to walk 4km to reach the main road. A morning and afternoon pickup loop between the Valley School and the Junction would benefit 150+ students daily."
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-sm">
+        <button class="btn btn-primary">
+          <span class="material-symbols-rounded">add_task</span> Open Tender
+        </button>
+        <button class="btn btn-secondary">
+          <span class="material-symbols-rounded">archive</span> Archive
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-xxl pt-xl border-t flex justify-between items-center">
+    <p class="text-muted text-small">Showing <span class="text-bold text-main">2</span> of <span class="text-bold text-main">14</span> pending approvals</p>
+    <div class="flex gap-sm">
+      <button class="btn-icon" style="width: 40px; height: 40px;"><span class="material-symbols-rounded">chevron_left</span></button>
+      <button class="btn btn-primary" style="padding: 0 1rem; width: 40px; height: 40px; border-radius: 50%;">1</button>
+      <button class="btn-icon" style="width: 40px; height: 40px;"><span class="material-symbols-rounded">chevron_right</span></button>
+    </div>
+  </footer>
+</div>

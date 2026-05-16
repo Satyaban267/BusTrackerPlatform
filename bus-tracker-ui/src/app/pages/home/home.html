@@ -1,0 +1,116 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero relative overflow-hidden">
+    <div class="hero-bg absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=2000" alt="Scenic Road" class="w-full h-full object-cover opacity-30">
+      <div class="hero-gradient absolute inset-0"></div>
+    </div>
+    
+    <div class="container relative z-10 py-xxl">
+      <div class="hero-content max-w-7xl">
+        <h1 class="h1 animate-slide-up mb-md">
+          Your Way <span style="color: var(--color-primary);">Home</span>
+        </h1>
+        <p class="subtitle animate-slide-up mb-xl" style="animation-delay: 100ms;">
+          Safe, reliable bus tracking for your daily journey between village and city.
+        </p>
+        
+        <!-- Search Card -->
+        <div class="card glass animate-slide-up" style="max-width: 600px; animation-delay: 200ms;">
+          <div class="flex flex-col gap-lg">
+            <div class="input-group">
+              <label class="text-xs text-bold">Start From</label>
+              <div class="flex items-center bg-surface p-sm rounded-md">
+                <span class="material-symbols-rounded" style="color: var(--color-primary); padding: 0 var(--spacing-sm);">location_on</span>
+                <input type="text" placeholder="Village or Stop Name" class="input-field" style="background: transparent; border: none; box-shadow: none;">
+              </div>
+            </div>
+            
+            <div class="flex justify-center -my-lg">
+              <button class="btn-icon glass shadow-md">
+                <span class="material-symbols-rounded">swap_vert</span>
+              </button>
+            </div>
+            
+            <div class="input-group">
+              <label class="text-xs text-bold">Going To</label>
+              <div class="flex items-center bg-surface p-sm rounded-md">
+                <span class="material-symbols-rounded" style="color: var(--color-secondary); padding: 0 var(--spacing-sm);">apartment</span>
+                <input type="text" placeholder="City or Destination" class="input-field" style="background: transparent; border: none; box-shadow: none;">
+              </div>
+            </div>
+            
+            <button class="btn btn-primary w-full mt-md">
+              <span class="material-symbols-rounded">search</span> Find My Bus
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Routes -->
+  <section class="container py-xxl">
+    <div class="flex justify-between items-end mb-xl">
+      <div>
+        <span class="text-xs" style="color: var(--color-tertiary);">Local Favorites</span>
+        <h2 class="h2">Popular Routes</h2>
+      </div>
+      <button class="btn btn-secondary">See All Routes</button>
+    </div>
+    
+    <div class="grid grid-cols-3 gap-xl">
+      <!-- Large Featured Card -->
+      <div class="card grid-span-2 relative overflow-hidden" style="grid-column: span 2; background: linear-gradient(135deg, var(--color-surface), #fff);">
+        <div class="relative z-10">
+          <span class="badge badge-primary mb-md">Most Frequent</span>
+          <h3 class="h2 mb-sm">Market Square to Town Center</h3>
+          <p class="text-muted">Buses every 15 minutes during peak hours</p>
+          
+          <div class="flex items-center gap-md mt-xl">
+            <div class="flex -space-x-md">
+              <div class="avatar shadow-sm"></div>
+              <div class="avatar shadow-sm"></div>
+            </div>
+            <span class="text-small text-bold" style="color: var(--color-secondary);">42 passengers tracking now</span>
+          </div>
+        </div>
+        <span class="material-symbols-rounded icon-filled absolute" style="bottom: -20px; right: -20px; font-size: 200px; color: var(--color-primary-light); opacity: 0.5;">directions_bus</span>
+      </div>
+      
+      <!-- Small Cards -->
+      <div class="card flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-sm mb-md" style="color: var(--color-tertiary);">
+            <span class="material-symbols-rounded">schedule</span>
+            <span class="text-xs">Morning Express</span>
+          </div>
+          <h3 class="h3">Panchayat Hub to Railway Station</h3>
+        </div>
+        <div class="flex justify-between items-center mt-xl pt-md border-t">
+          <span class="text-bold" style="color: var(--color-primary);">Starts 5:30 AM</span>
+          <button class="btn-icon glass" style="width: 40px; height: 40px;">
+            <span class="material-symbols-rounded">bookmark</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Status Banner -->
+  <section class="container py-xl">
+    <div class="card glass shadow-lg flex items-center gap-xl p-xxl" style="background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(253,234,229,0.5));">
+      <div class="pulse-container relative">
+        <div class="pulse-ring"></div>
+        <div class="btn-icon icon-filled" style="background: var(--color-secondary); color: white; border: none; width: 64px; height: 64px;">
+          <span class="material-symbols-rounded">my_location</span>
+        </div>
+      </div>
+      <div class="flex-1">
+        <h2 class="h3 mb-xs">Nearest bus is 4 mins away</h2>
+        <p class="subtitle italic" style="font-size: 1rem;">"The Red Line #402" is approaching Village Crossroad</p>
+      </div>
+      <button class="btn btn-primary shadow-lg">Track Live</button>
+    </div>
+  </section>
+</div>
