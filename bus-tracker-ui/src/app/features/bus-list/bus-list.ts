@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BusApiService, Bus } from '../../core/services/bus-api';
 
 @Component({
@@ -17,10 +18,9 @@ export class BusListComponent implements OnInit {
   isLoading = true;
   error = '';
 
-  constructor(private busService: BusApiService) {}
+  constructor(private busService: BusApiService, private router: Router) {}
 
   ngOnInit(): void {
-    this.isLoading = true;
     this.busService.getBuses().subscribe({
       next: (data) => {
         this.buses = data;
@@ -42,27 +42,19 @@ export class BusListComponent implements OnInit {
       this.filteredBuses = [...this.buses];
       return;
     }
-
-    this.filteredBuses = this.buses.filter((bus) => {
-      return (
-        bus.operatorName.toLowerCase().includes(term) ||
-        bus.route.toLowerCase().includes(term) ||
-        bus.id.toString().includes(term)
-      );
-    });
+    this.filteredBuses = this.buses.filter((bus) =>
+      bus.serviceName.toLowerCase().includes(term) ||
+      bus.origin.toLowerCase().includes(term) ||
+      bus.destination.toLowerCase().includes(term) ||
+      (bus.viaPoints?.toLowerCase().includes(term) ?? false)
+    );
   }
 
-  onViewDetails(selectedBus: Bus): void {
-    alert(`
-      ${selectedBus.operatorName}
-      Route: ${selectedBus.route}
-      Price: $${selectedBus.generalPrice.toFixed(2)}
-    `);
+  onViewDetails(bus: Bus): void {
+    this.router.navigate(['/bus', bus.id]);
   }
 
   trackById(index: number, bus: Bus): number {
     return bus.id;
   }
 }
-
-

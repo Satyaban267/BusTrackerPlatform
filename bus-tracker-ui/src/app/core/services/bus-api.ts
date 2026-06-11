@@ -2,11 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface BusStop {
+  id: number;
+  stationName: string;
+  arrivalTime: string | null;
+  departureTime: string | null;
+  stopOrder: number;
+}
+
 export interface Bus {
   id: number;
-  operatorName: string;
-  route: string;
-  generalPrice: number;
+  serviceName: string;
+  contactNumber: string | null;
+  origin: string;
+  destination: string;
+  viaPoints: string | null;
+  departureTime: string;
+  returnTime: string | null;
+  isActive: boolean;
+  stops: BusStop[];
 }
 
 @Injectable({
@@ -17,7 +31,16 @@ export class BusApiService {
 
   constructor(private http: HttpClient) {}
 
-  getBuses(): Observable<Bus[]> {
-    return this.http.get<Bus[]>(this.apiUrl);
+  getBuses(from?: string, to?: string): Observable<Bus[]> {
+    let url = this.apiUrl;
+    const params: string[] = [];
+    if (from) params.push(`from=${encodeURIComponent(from)}`);
+    if (to) params.push(`to=${encodeURIComponent(to)}`);
+    if (params.length) url += '?' + params.join('&');
+    return this.http.get<Bus[]>(url);
+  }
+
+  getBusById(id: number): Observable<Bus> {
+    return this.http.get<Bus>(`${this.apiUrl}/${id}`);
   }
 }

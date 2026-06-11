@@ -1,31 +1,21 @@
-<section class="hero">
-  <div class="hero-content">
-    <h1>Fast, Reliable Bus Tracking</h1>
-    <p>Find the best route, price, and operator in seconds.</p>
-  </div>
-</section>
-
 <div class="bus-container">
   <div class="search-row">
     <input
       type="text"
-      placeholder="Search by operator, route, or ID"
+      placeholder="Search by service name, origin, or destination"
       [(ngModel)]="searchTerm"
       (input)="onSearch()"
       aria-label="Search bus routes"
     />
-    <span class="search-hint">Tap to search and see route results update instantly.</span>
   </div>
 
   <div class="status-message">
     <ng-container *ngIf="isLoading">
       <p>Loading buses...</p>
     </ng-container>
-
     <ng-container *ngIf="error && !isLoading">
       <p class="error">{{ error }}</p>
     </ng-container>
-
     <ng-container *ngIf="!isLoading && !error && filteredBuses.length === 0">
       <p>No routes found. Try a different search term.</p>
     </ng-container>
@@ -34,11 +24,13 @@
   <div class="bus-grid" *ngIf="!isLoading && !error && filteredBuses.length > 0">
     <div class="bus-card" *ngFor="let bus of filteredBuses; trackBy: trackById">
       <div class="card-header">
-        <h3>{{ bus.operatorName }}</h3>
+        <h3>{{ bus.serviceName }}</h3>
         <span class="badge">#{{ bus.id }}</span>
       </div>
-      <p class="route"><strong>Route:</strong> {{ bus.route }}</p>
-      <p class="price"><strong>Price</strong> ${{ bus.generalPrice }}</p>
+      <p class="route"><strong>Route:</strong> {{ bus.origin }} → {{ bus.destination }}</p>
+      <p class="route" *ngIf="bus.viaPoints"><strong>Via:</strong> {{ bus.viaPoints }}</p>
+      <p class="route"><strong>Departs:</strong> {{ bus.departureTime }}</p>
+      <p class="route" *ngIf="bus.returnTime"><strong>Returns:</strong> {{ bus.returnTime }}</p>
       <button class="detail-btn" (click)="onViewDetails(bus)">View Details</button>
     </div>
   </div>

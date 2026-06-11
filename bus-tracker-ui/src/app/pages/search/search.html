@@ -1,246 +1,135 @@
-﻿<div class="bg-background text-on-background min-h-screen pb-24">
+<div class="bg-background text-on-background min-h-screen pb-10">
 
-<!-- TopNavBar (JSON Authority) -->
-<header class="bg-[#fff8f6] dark:bg-stone-950 w-full h-16 sticky top-0 z-40 shadow-none">
-<div class="flex justify-between items-center px-6 w-full max-w-7xl mx-auto h-full">
-<div class="text-2xl font-bold text-[#982400] tracking-tight">The Digital Hearth</div>
-<nav class="hidden md:flex gap-8">
-<a class="text-[#982400] font-bold border-b-2 border-[#982400] pb-1" href="#">Buses</a>
-<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#982400] transition-colors" href="#">Routes</a>
-<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#982400] transition-colors" href="#">My Trips</a>
-</nav>
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-[#982400]">notifications</span>
-<span class="material-symbols-outlined text-[#982400]">person</span>
-</div>
-</div>
-</header>
-<main class="max-w-7xl mx-auto px-4 md:px-6 py-6">
-<!-- Search Context Header -->
-<div class="mb-8 relative rounded-3xl overflow-hidden bg-surface-container-low p-6 md:p-10">
-<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-<div>
-<span class="label-md text-primary font-bold tracking-[0.05em] block mb-2">SEARCH RESULTS</span>
-<h1 class="text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight">Rampur <span class="text-primary-container mx-2">â†’</span> Dehradun</h1>
-<p class="text-on-surface-variant mt-2 font-medium">Found 4 buses for Today, 24 Oct</p>
-</div>
-<div class="flex gap-3">
-<button class="bg-surface-container-high px-5 py-2.5 rounded-full flex items-center gap-2 font-semibold text-on-surface active:scale-95 transition-transform">
-<span class="material-symbols-outlined text-xl">filter_list</span>
-                        Filter
-                    </button>
-<button class="bg-primary text-white px-5 py-2.5 rounded-full flex items-center gap-2 font-semibold active:scale-95 transition-transform">
-<span class="material-symbols-outlined text-xl">swap_vert</span>
-                        Sort
-                    </button>
-</div>
-</div>
-<!-- Decorative Element -->
-<div class="absolute right-[-5%] top-[-10%] w-64 h-64 bg-primary-fixed-dim opacity-20 rounded-full blur-3xl"></div>
-</div>
-<!-- Bus Results Grid/List -->
-<div class="flex flex-col gap-6">
-<!-- Bus Card 1: Express (Terracotta/Primary) -->
-<div class="bg-surface-container rounded-3xl overflow-hidden flex flex-col md:flex-row relative">
-<!-- Asymmetrical Category Tab -->
-<div class="absolute left-0 top-0 bottom-0 w-3 bg-tertiary hidden md:block"></div>
-<div class="p-6 flex-1">
-<div class="flex flex-wrap justify-between items-start gap-4 mb-6">
-<div>
-<div class="flex items-center gap-2 mb-1">
-<span class="bg-tertiary text-on-tertiary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">Express</span>
-<h2 class="text-2xl font-extrabold text-on-surface tracking-tight">Vikas Rath 402</h2>
-</div>
-<p class="text-on-surface-variant font-medium flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">directions_bus</span>
-                                State Transport Corp.
-                            </p>
-</div>
-<div class="text-right">
-<div class="text-3xl font-extrabold text-primary tracking-tight">â‚¹145</div>
-<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Per Passenger</p>
-</div>
-</div>
-<!-- Route Thread (Signature Component) -->
-<div class="flex items-center gap-6 py-4">
-<div class="flex flex-col items-center">
-<div class="w-4 h-4 rounded-full border-4 border-primary bg-surface z-10"></div>
-<div class="w-1.5 h-12 bg-secondary-fixed"></div>
-<div class="w-4 h-4 rounded-full border-4 border-secondary bg-surface z-10"></div>
-</div>
-<div class="flex-1 flex flex-col justify-between h-20">
-<div class="flex justify-between items-center w-full">
-<div>
-<span class="text-lg font-bold">06:15 AM</span>
-<span class="text-on-surface-variant text-sm ml-2 font-medium">Rampur Chowk</span>
-</div>
-</div>
-<div class="flex justify-between items-center w-full">
-<div>
-<span class="text-lg font-bold">08:45 AM</span>
-<span class="text-on-surface-variant text-sm ml-2 font-medium">City Terminal</span>
-</div>
-<span class="text-secondary font-bold text-sm bg-secondary-container px-3 py-1 rounded-full flex items-center gap-1">
-<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">timer</span>
-                                    On Time
-                                </span>
-</div>
-</div>
-</div>
-</div>
-<div class="bg-surface-container-high p-6 md:w-72 flex flex-col justify-center gap-3">
-<button class="bg-primary text-on-primary w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 active:opacity-80 transition-all">
-                        Select Seats
-                        <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-<button class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 active:opacity-80 transition-all">
-<span class="material-symbols-outlined text-primary">call</span>
-                        Contact
-                    </button>
-</div>
-</div>
-<!-- Bus Card 2: Local (Secondary/Green) -->
-<div class="bg-surface-container-low rounded-3xl overflow-hidden flex flex-col md:flex-row relative">
-<div class="p-6 flex-1">
-<div class="flex flex-wrap justify-between items-start gap-4 mb-6">
-<div>
-<div class="flex items-center gap-2 mb-1">
-<span class="bg-secondary text-white text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">Local Service</span>
-<h2 class="text-2xl font-extrabold text-on-surface tracking-tight">Kisan Mitra</h2>
-</div>
-<p class="text-on-surface-variant font-medium flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">person</span>
-                                Private - Ashok Leyland
-                            </p>
-</div>
-<div class="text-right">
-<div class="text-3xl font-extrabold text-primary tracking-tight">â‚¹85</div>
-<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Per Passenger</p>
-</div>
-</div>
-<div class="flex items-center gap-6 py-4">
-<div class="flex flex-col items-center">
-<div class="w-4 h-4 rounded-full border-4 border-primary bg-surface z-10"></div>
-<div class="w-1.5 h-12 bg-outline-variant/30"></div>
-<div class="w-4 h-4 rounded-full border-4 border-secondary bg-surface z-10"></div>
-</div>
-<div class="flex-1 flex flex-col justify-between h-20">
-<div class="flex justify-between items-center w-full">
-<div>
-<span class="text-lg font-bold">07:30 AM</span>
-<span class="text-on-surface-variant text-sm ml-2 font-medium">Rampur Stand</span>
-</div>
-</div>
-<div class="flex justify-between items-center w-full">
-<div>
-<span class="text-lg font-bold">10:15 AM</span>
-<span class="text-on-surface-variant text-sm ml-2 font-medium">Market Square</span>
-</div>
-<span class="text-on-surface-variant font-bold text-sm bg-surface-container-highest px-3 py-1 rounded-full flex items-center gap-1">
-<span class="material-symbols-outlined text-xs">schedule</span>
-                                    Expected
-                                </span>
-</div>
-</div>
-</div>
-</div>
-<div class="bg-surface-container-high p-6 md:w-72 flex flex-col justify-center gap-3">
-<button class="bg-primary text-on-primary w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 active:opacity-80 transition-all">
-                        Select Seats
-                        <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-<button class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 active:opacity-80 transition-all">
-<span class="material-symbols-outlined text-primary">call</span>
-                        Contact
-                    </button>
-</div>
-</div>
-<!-- Bus Card 3: Mini (Ochre/Tertiary) -->
-<div class="bg-surface-container rounded-3xl overflow-hidden flex flex-col md:flex-row relative">
-<div class="p-6 flex-1">
-<div class="flex flex-wrap justify-between items-start gap-4 mb-6">
-<div>
-<div class="flex items-center gap-2 mb-1">
-<span class="bg-tertiary-container text-on-tertiary-container text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">Mini Bus</span>
-<h2 class="text-2xl font-extrabold text-on-surface tracking-tight">Shuttle Express 10</h2>
-</div>
-<p class="text-on-surface-variant font-medium flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">airport_shuttle</span>
-                                City Connect Shuttles
-                            </p>
-</div>
-<div class="text-right">
-<div class="text-3xl font-extrabold text-primary tracking-tight">â‚¹120</div>
-<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Per Passenger</p>
-</div>
-</div>
-<div class="flex items-center gap-6 py-4">
-<div class="flex flex-col items-center">
-<div class="w-4 h-4 rounded-full border-4 border-primary bg-surface z-10"></div>
-<div class="w-1.5 h-12 bg-secondary-fixed"></div>
-<div class="w-4 h-4 rounded-full border-4 border-secondary bg-surface z-10"></div>
-</div>
-<div class="flex-1 flex flex-col justify-between h-20">
-<div class="flex justify-between items-center w-full">
-<div>
-<span class="text-lg font-bold">08:00 AM</span>
-<span class="text-on-surface-variant text-sm ml-2 font-medium">Old P.O.</span>
-</div>
-</div>
-<div class="flex justify-between items-center w-full">
-<div>
-<span class="text-lg font-bold">09:45 AM</span>
-<span class="text-on-surface-variant text-sm ml-2 font-medium">Railway Station</span>
-</div>
-<span class="text-secondary font-bold text-sm bg-secondary-container px-3 py-1 rounded-full flex items-center gap-1">
-<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">bolt</span>
-                                    Fastest
-                                </span>
-</div>
-</div>
-</div>
-</div>
-<div class="bg-surface-container-high p-6 md:w-72 flex flex-col justify-center gap-3">
-<button class="bg-primary text-on-primary w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 active:opacity-80 transition-all">
-                        Select Seats
-                        <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-<button class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 active:opacity-80 transition-all">
-<span class="material-symbols-outlined text-primary">call</span>
-                        Contact
-                    </button>
-</div>
-</div>
-</div>
-<!-- Empty State/Bottom CTA (Contextual) -->
-<div class="mt-12 text-center p-8 bg-surface-container-low rounded-[2rem] border border-dashed border-outline-variant/40">
-<h3 class="text-xl font-bold text-on-surface mb-2">Not finding the right time?</h3>
-<p class="text-on-surface-variant mb-6 max-w-sm mx-auto">Check other dates or browse return routes for more options.</p>
-<button class="bg-secondary-container text-on-secondary-container px-8 py-3 rounded-full font-bold active:scale-95 transition-transform">
-                Browse Return Trips
-            </button>
-</div>
-</main>
-<!-- SideNavBar (JSON Authority - Mobile Context) -->
-<!-- Hidden by default on mobile, handled via BottomNavBar -->
-<!-- BottomNavBar (JSON Authority) -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-[#fff8f6]/80 dark:bg-stone-950/80 backdrop-blur-xl border-t border-[#e2bfb6]/15 shadow-[0_-4px_20px_rgba(43,22,17,0.06)] md:hidden">
-<a class="flex flex-col items-center justify-center bg-[#982400] text-white rounded-full p-3 w-14 h-14 -mt-6 shadow-lg active:scale-90 transition-transform duration-200" href="#">
-<span class="material-symbols-outlined">directions_bus</span>
-<span class="font-public-sans text-[8px] uppercase tracking-wider font-semibold">Buses</span>
-</a>
-<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 py-2 hover:text-[#982400] active:scale-90 transition-transform duration-200" href="#">
-<span class="material-symbols-outlined">store</span>
-<span class="font-public-sans text-[11px] uppercase tracking-wider font-semibold">Stops</span>
-</a>
-<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 py-2 hover:text-[#982400] active:scale-90 transition-transform duration-200" href="#">
-<span class="material-symbols-outlined">confirmation_number</span>
-<span class="font-public-sans text-[11px] uppercase tracking-wider font-semibold">Bookings</span>
-</a>
-<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 py-2 hover:text-[#982400] active:scale-90 transition-transform duration-200" href="#">
-<span class="material-symbols-outlined">account_circle</span>
-<span class="font-public-sans text-[11px] uppercase tracking-wider font-semibold">Profile</span>
-</a>
-</nav>
+  <!-- Header -->
+  <header class="bg-surface w-full h-16 sticky top-0 z-40 border-b border-outline-variant/30 shadow-sm">
+    <div class="flex justify-between items-center px-6 w-full max-w-7xl mx-auto h-full">
+      <div class="flex items-center gap-3">
+        <button (click)="goHome()" class="p-2 -ml-2 text-primary rounded-full hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <span class="text-lg font-bold text-primary tracking-tight">Gramin Path</span>
+      </div>
+    </div>
+  </header>
 
+  <main class="max-w-7xl mx-auto px-4 md:px-6 py-6">
+
+    <!-- Search Context Header -->
+    <div class="mb-8 relative rounded-3xl overflow-hidden bg-surface-container-low p-6 md:p-10">
+      <div class="relative z-10">
+        <span class="label-md text-primary font-bold tracking-[0.05em] block mb-2">SEARCH RESULTS</span>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight">
+          {{ from || 'All Origins' }}
+          <span class="text-primary-container mx-2">→</span>
+          {{ to || 'All Destinations' }}
+        </h1>
+        <p class="text-on-surface-variant mt-2 font-medium">
+          <span *ngIf="!loading">Found {{ buses.length }} bus{{ buses.length !== 1 ? 'es' : '' }}</span>
+          <span *ngIf="loading">Searching...</span>
+        </p>
+      </div>
+      <div class="absolute right-[-5%] top-[-10%] w-64 h-64 bg-primary-fixed-dim opacity-20 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="flex flex-col items-center justify-center py-20 gap-4">
+      <span class="material-symbols-outlined text-primary animate-spin" style="font-size: 48px;">refresh</span>
+      <p class="text-on-surface-variant font-medium">Finding buses for you...</p>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && buses.length === 0" class="text-center py-16 px-6">
+      <span class="material-symbols-outlined text-on-surface-variant/40" style="font-size: 64px;">directions_bus</span>
+      <h3 class="text-xl font-bold text-on-surface mt-4 mb-2">No Buses Found</h3>
+      <p class="text-on-surface-variant mb-6 max-w-sm mx-auto">
+        We couldn't find any buses matching your search. Try a different route.
+      </p>
+      <button (click)="goHome()" class="bg-primary text-on-primary px-8 py-3 rounded-full font-bold active:scale-95 transition-transform">
+        Search Again
+      </button>
+    </div>
+
+    <!-- Bus Results -->
+    <div *ngIf="!loading && buses.length > 0" class="flex flex-col gap-5">
+
+      <div
+        *ngFor="let bus of buses"
+        (click)="goToBusDetail(bus.id)"
+        class="bg-surface-container rounded-3xl overflow-hidden flex flex-col md:flex-row relative cursor-pointer hover:shadow-lg transition-shadow duration-200">
+
+        <!-- Left Accent -->
+        <div class="absolute left-0 top-0 bottom-0 w-2 bg-primary hidden md:block rounded-l-3xl"></div>
+
+        <!-- Main Content -->
+        <div class="p-6 flex-1">
+          <div class="flex flex-wrap justify-between items-start gap-4 mb-4">
+            <div>
+              <h2 class="text-2xl font-extrabold text-on-surface tracking-tight">{{ bus.serviceName }}</h2>
+              <p *ngIf="bus.contactNumber" class="text-on-surface-variant font-medium flex items-center gap-1 mt-1 text-sm">
+                <span class="material-symbols-outlined text-sm">call</span>
+                {{ bus.contactNumber }}
+              </p>
+            </div>
+            <span
+              [class]="bus.isActive
+                ? 'bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest'
+                : 'bg-error-container text-error px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest'">
+              {{ bus.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </div>
+
+          <!-- Route Thread -->
+          <div class="flex items-center gap-5 py-3">
+            <div class="flex flex-col items-center">
+              <div class="w-3.5 h-3.5 rounded-full border-[3px] border-primary bg-surface z-10"></div>
+              <div class="w-1 h-10 bg-outline-variant/40"></div>
+              <div class="w-3.5 h-3.5 rounded-full border-[3px] border-secondary bg-surface z-10"></div>
+            </div>
+            <div class="flex-1 flex flex-col justify-between" style="min-height: 56px;">
+              <div class="flex justify-between items-center w-full">
+                <span class="text-base font-bold text-on-surface">{{ bus.origin }}</span>
+                <span class="text-sm font-bold text-primary">{{ bus.departureTime }}</span>
+              </div>
+              <div class="flex justify-between items-center w-full">
+                <span class="text-base font-bold text-on-surface">{{ bus.destination }}</span>
+                <span *ngIf="bus.returnTime" class="text-xs font-medium text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full">
+                  Returns: {{ bus.returnTime }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Via Points -->
+          <div *ngIf="bus.viaPoints" class="mt-2 flex flex-wrap gap-1.5 items-center">
+            <span class="text-xs text-on-surface-variant font-medium">Via:</span>
+            <span
+              *ngFor="let stop of getViaList(bus.viaPoints)"
+              class="bg-surface-container-high text-on-surface-variant text-xs px-2 py-0.5 rounded-full font-medium">
+              {{ stop }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Action Panel -->
+        <div class="bg-surface-container-high p-5 md:w-56 flex flex-row md:flex-col justify-between md:justify-center items-center gap-3">
+          <button
+            (click)="goToBusDetail(bus.id); $event.stopPropagation()"
+            class="bg-primary text-on-primary w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 active:opacity-80 transition-all text-sm">
+            View Details
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+          </button>
+          <a
+            *ngIf="bus.contactNumber"
+            [href]="'tel:' + getCallableNumber(bus.contactNumber)"
+            (click)="$event.stopPropagation()"
+            class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 active:opacity-80 transition-all text-sm">
+            <span class="material-symbols-outlined text-primary text-lg">call</span>
+            Call
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
 </div>

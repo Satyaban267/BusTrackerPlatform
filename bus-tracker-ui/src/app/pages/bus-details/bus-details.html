@@ -1,168 +1,150 @@
-﻿<div class="bg-background text-on-surface min-h-screen pb-24">
+<div class="bg-background text-on-surface min-h-screen pb-10">
 
-<!-- Top Navigation Bar -->
-<header class="bg-[#fff8f6] dark:bg-stone-950 w-full h-16 flex justify-between items-center px-6 w-full max-w-7xl mx-auto sticky top-0 z-40">
-<div class="flex items-center gap-4">
-<button class="p-2 -ml-2 text-[#982400]">
-<span class="material-symbols-outlined">arrow_back</span>
-</button>
-<span class="text-2xl font-bold text-[#982400] tracking-tight">The Digital Hearth</span>
-</div>
-<div class="hidden md:flex gap-8 items-center">
-<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#982400] transition-colors" href="#">Buses</a>
-<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#982400] transition-colors" href="#">Routes</a>
-<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-[#982400] transition-colors" href="#">My Trips</a>
-</div>
-<div class="flex gap-4 items-center">
-<span class="material-symbols-outlined text-[#982400] cursor-pointer">notifications</span>
-<span class="material-symbols-outlined text-[#982400] cursor-pointer">person</span>
-</div>
-</header>
-<main class="max-w-md mx-auto px-4 mt-6">
-<!-- Bus Hero Card -->
-<section class="relative bg-surface-container rounded-3xl p-6 mb-6 overflow-hidden">
-<div class="absolute top-0 left-0 w-2 h-full bg-tertiary"></div>
-<div class="flex justify-between items-start mb-4">
-<div>
-<span class="text-xs font-bold tracking-widest text-on-surface-variant opacity-70 uppercase block mb-1">BUS NUMBER</span>
-<h1 class="text-4xl font-extrabold text-primary tracking-tight">KA 19 F 4421</h1>
-<p class="text-lg font-semibold text-on-surface mt-1">Express Rural Shuttle</p>
-</div>
-<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                    ON TIME
-                </div>
-</div>
-<div class="flex items-center gap-2 text-on-surface-variant text-sm font-medium">
-<span class="material-symbols-outlined text-base">location_on</span>
-<span>Currently at: Hebbal Cross</span>
-</div>
-</section>
-<!-- Personnel & Contact Bento Grid -->
-<div class="grid grid-cols-1 gap-4 mb-8">
-<div class="bg-surface-container-low rounded-3xl p-5 flex items-center justify-between">
-<div class="flex items-center gap-4">
-<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-primary/10">
-<img class="w-full h-full object-cover" data-alt="portrait of a professional bus driver in a clean uniform with a warm friendly expression and sun-kissed skin" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG55rbuu69ABjLrgsIYNn6UklC_RqaBCiz6E4BOXp2nM4tngDYsiv2bE9VmUU7xlw2lkUHqrXH8DFrmE8Uv4yQeTOeaKW1NlAe_fsx2t9U8DU0NSBeXlQIaCpL4H13WLuYQotBh2BgZLKLXuErf0HUSv74dE6RAn9D5Q1ImbI5p6QM2UGCtfTfUH_XVdPY4vSBCyNN9i-Ktv6gneBQPuWp_BAuSPfYZZbVbse1E2ffUMjJyPhIzcaGep_O8vOfTRtPSO3CqcxJdq-B"/>
-</div>
-<div>
-<h3 class="font-bold text-on-surface">Rajesh Kumar</h3>
-<p class="text-sm text-on-surface-variant font-medium">Head Driver â€¢ 12 yrs exp</p>
-</div>
-</div>
-<a class="bg-primary text-on-primary h-12 w-12 rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform" href="tel:+919876543210">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
-</a>
-</div>
-<div class="bg-surface-container-low rounded-3xl p-5 flex items-center justify-between">
-<div class="flex items-center gap-4">
-<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-primary/10">
-<img class="w-full h-full object-cover" data-alt="close-up portrait of a younger man wearing a bus conductor vest, smiling helpful expression in natural daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM9heDvmwC-bESTk9SdFocHHf2qqjiy7vlttHWYu0-bE1_yvmmy5v0gavVyUsVLU7Aih-nb8XLme4YZI6V7M-ND6sZkM5D5RtZyvxsH_FT_XGg6A86E46YaJfp5wW_XPNm4_58f82T6TPwh__4xhwD363ezo9yi7Tx0KmLu1y2mWsI9wv8BDDL9Ha4A03KNQP3Zbz14lTNI1bJgCMZuy4z3aqn-q_PTTFW62UIOYU09FNQj1HWYn00wvi_RqPnHks2GIJIJge-euQ_"/>
-</div>
-<div>
-<h3 class="font-bold text-on-surface">Suresh V.</h3>
-<p class="text-sm text-on-surface-variant font-medium">Conductor â€¢ Tickets &amp; Cargo</p>
-</div>
-</div>
-<a class="bg-surface-container-high text-primary h-12 w-12 rounded-full flex items-center justify-center active:scale-90 transition-transform" href="tel:+919876543211">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
-</a>
-</div>
-</div>
-<!-- Linear Schedule View (Route Thread) -->
-<div class="mb-6">
-<h2 class="text-xl font-bold text-on-surface mb-6 px-1 flex items-center gap-2">
-<span class="material-symbols-outlined text-tertiary">schedule</span>
-                Full Schedule
-            </h2>
-<div class="relative pl-8">
-<!-- Vertical Thread Line -->
-<div class="absolute left-[11px] top-4 bottom-4 w-1.5 bg-secondary-fixed rounded-full"></div>
-<!-- Stops -->
-<div class="space-y-10">
-<!-- Past Stop -->
-<div class="relative flex justify-between items-start opacity-60">
-<div class="absolute -left-[28px] top-1.5 w-6 h-6 rounded-full bg-secondary border-4 border-surface ring-2 ring-secondary/20"></div>
-<div>
-<h4 class="font-bold text-on-surface">Central Bus Terminus</h4>
-<p class="text-sm font-medium text-on-surface-variant uppercase tracking-wide">Departure</p>
-</div>
-<div class="text-right">
-<span class="text-sm font-bold text-on-surface">06:30 AM</span>
-</div>
-</div>
-<!-- Current/Next Stop -->
-<div class="relative flex justify-between items-start">
-<div class="absolute -left-[32px] -top-0.5 w-8 h-8 rounded-full bg-primary border-4 border-surface-container-high ring-4 ring-primary/15 flex items-center justify-center">
-<div class="w-2 h-2 rounded-full bg-white"></div>
-</div>
-<div>
-<h4 class="text-lg font-extrabold text-primary">Hebbal Cross</h4>
-<p class="text-sm font-bold text-secondary uppercase tracking-wider">Arriving Now</p>
-</div>
-<div class="text-right">
-<span class="text-lg font-extrabold text-primary">07:15 AM</span>
-</div>
-</div>
-<!-- Upcoming Stop -->
-<div class="relative flex justify-between items-start">
-<div class="absolute -left-[28px] top-1.5 w-6 h-6 rounded-full bg-surface-container-highest border-4 border-surface"></div>
-<div>
-<h4 class="font-bold text-on-surface">Village Market Square</h4>
-<p class="text-sm font-medium text-on-surface-variant uppercase tracking-wide">Pickup Point</p>
-</div>
-<div class="text-right">
-<span class="text-sm font-bold text-on-surface">07:45 AM</span>
-</div>
-</div>
-<!-- Destination -->
-<div class="relative flex justify-between items-start">
-<div class="absolute -left-[28px] top-1.5 w-6 h-6 rounded-full bg-tertiary-fixed border-4 border-surface"></div>
-<div>
-<h4 class="font-bold text-on-surface">Agricultural Hub</h4>
-<p class="text-sm font-medium text-on-surface-variant uppercase tracking-wide">Terminal</p>
-</div>
-<div class="text-right">
-<span class="text-sm font-bold text-on-surface">08:30 AM</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Live Status Floating Bar -->
-<div class="fixed bottom-24 left-4 right-4 z-30">
-<div class="bg-surface-container/80 backdrop-blur-xl p-4 rounded-3xl border border-outline-variant/15 flex items-center gap-4 shadow-xl">
-<div class="w-12 h-12 bg-secondary-container rounded-2xl flex items-center justify-center text-on-secondary-container">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_bus</span>
-</div>
-<div class="flex-1">
-<p class="text-xs font-bold text-on-surface-variant opacity-70 uppercase tracking-widest">LIVE TRACKING</p>
-<p class="text-sm font-bold text-on-surface">Arriving at your stop in 12 mins</p>
-</div>
-<button class="bg-primary text-on-primary px-4 py-2 rounded-xl text-sm font-bold transition-all active:scale-95 shadow-md">
-                    RESERVE
-                </button>
-</div>
-</div>
-</main>
-<!-- Bottom Navigation Bar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-[#fff8f6]/80 dark:bg-stone-950/80 backdrop-blur-xl border-t border-[#e2bfb6]/15 shadow-[0_-4px_20px_rgba(43,22,17,0.06)] rounded-t-3xl">
-<div class="flex flex-col items-center justify-center text-[#982400] font-bold py-2">
-<span class="material-symbols-outlined">directions_bus</span>
-<span class="font-public-sans text-[11px] uppercase tracking-wider font-semibold">Buses</span>
-</div>
-<div class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 py-2">
-<span class="material-symbols-outlined">store</span>
-<span class="font-public-sans text-[11px] uppercase tracking-wider font-semibold">Stops</span>
-</div>
-<div class="flex flex-col items-center justify-center bg-[#982400] text-white rounded-full p-3 w-14 h-14 -mt-6 shadow-lg active:scale-90 transition-transform duration-200">
-<span class="material-symbols-outlined">confirmation_number</span>
-<!-- Label hidden for active FAB state as per item styling -->
-</div>
-<div class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 py-2">
-<span class="material-symbols-outlined">account_circle</span>
-<span class="font-public-sans text-[11px] uppercase tracking-wider font-semibold">Profile</span>
-</div>
-</nav>
+  <!-- Header -->
+  <header class="bg-surface w-full h-16 flex items-center gap-4 px-4 sticky top-0 z-40 border-b border-outline-variant/30 shadow-sm">
+    <button (click)="goBack()" class="p-2 -ml-2 text-primary rounded-full hover:bg-surface-container transition-colors" aria-label="Go back">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </button>
+    <span class="text-lg font-bold text-primary tracking-tight">Bus Details</span>
+  </header>
 
+  <!-- Loading State -->
+  <div *ngIf="loading" class="flex flex-col items-center justify-center py-32 gap-4">
+    <span class="material-symbols-outlined text-primary animate-spin" style="font-size: 48px;">refresh</span>
+    <p class="text-on-surface-variant font-medium">Loading bus details...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="flex flex-col items-center justify-center py-32 gap-4 px-6 text-center">
+    <span class="material-symbols-outlined text-error" style="font-size: 48px;">error_outline</span>
+    <h2 class="text-xl font-bold text-on-surface">Bus Not Found</h2>
+    <p class="text-on-surface-variant">This bus service could not be found. It may have been removed.</p>
+    <button (click)="goBack()" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold">
+      Back to Search
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <main *ngIf="bus && !loading" class="max-w-lg mx-auto px-4 py-6 flex flex-col gap-5">
+
+    <!-- Hero Card -->
+    <section class="bg-surface-container rounded-3xl p-6 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-2 h-full bg-primary rounded-l-3xl"></div>
+
+      <div class="flex justify-between items-start mb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-on-surface-variant/70 uppercase block mb-1">Bus Service</span>
+          <h1 class="text-3xl font-extrabold text-primary tracking-tight">{{ bus.serviceName }}</h1>
+        </div>
+        <span
+          [class]="bus.isActive
+            ? 'bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1'
+            : 'bg-error-container text-error px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1'">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">
+            {{ bus.isActive ? 'check_circle' : 'cancel' }}
+          </span>
+          {{ bus.isActive ? 'ACTIVE' : 'INACTIVE' }}
+        </span>
+      </div>
+
+      <!-- Route -->
+      <div class="flex items-center gap-3 mt-2">
+        <span class="material-symbols-outlined text-primary text-base">location_on</span>
+        <span class="font-semibold text-on-surface">{{ bus.origin }}</span>
+        <span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_forward</span>
+        <span class="font-semibold text-on-surface">{{ bus.destination }}</span>
+      </div>
+
+      <!-- Via Points -->
+      <div *ngIf="bus.viaPoints" class="mt-3 flex flex-wrap gap-2">
+        <span class="text-xs text-on-surface-variant font-medium mr-1 mt-1">Via:</span>
+        <span
+          *ngFor="let stop of getViaList(bus.viaPoints)"
+          class="bg-surface-container-high text-on-surface-variant text-xs px-2.5 py-1 rounded-full font-medium">
+          {{ stop }}
+        </span>
+      </div>
+    </section>
+
+    <!-- Timings Card -->
+    <section class="bg-surface-container-low rounded-3xl p-6">
+      <h2 class="text-base font-bold text-on-surface mb-4 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">schedule</span>
+        Timings
+      </h2>
+
+      <div class="flex flex-col gap-4">
+        <!-- Departure -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-base">departure_board</span>
+            </div>
+            <div>
+              <p class="text-xs text-on-surface-variant font-medium uppercase tracking-wide">Departure from {{ bus.origin }}</p>
+              <p class="text-xl font-extrabold text-on-surface">{{ bus.departureTime }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Return (if available) -->
+        <div *ngIf="bus.returnTime" class="flex items-center justify-between border-t border-outline-variant/30 pt-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-secondary text-base">keyboard_return</span>
+            </div>
+            <div>
+              <p class="text-xs text-on-surface-variant font-medium uppercase tracking-wide">Return from {{ bus.destination }}</p>
+              <p class="text-xl font-extrabold text-on-surface">{{ bus.returnTime }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!bus.returnTime" class="border-t border-outline-variant/30 pt-4">
+          <p class="text-sm text-on-surface-variant italic">No return service listed for this route.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Card -->
+    <section *ngIf="bus.contactNumber" class="bg-surface-container-low rounded-3xl p-6">
+      <h2 class="text-base font-bold text-on-surface mb-4 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">call</span>
+        Contact Operator
+      </h2>
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs text-on-surface-variant font-medium uppercase tracking-wide mb-1">Phone Number</p>
+          <p class="text-lg font-bold text-on-surface">{{ bus.contactNumber }}</p>
+        </div>
+        <a
+          [href]="'tel:' + getCallableNumber(bus.contactNumber)"
+          class="bg-primary text-on-primary h-12 w-12 rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Stops Card (Phase 2 — shown only if stops exist) -->
+    <section *ngIf="bus.stops && bus.stops.length > 0" class="bg-surface-container-low rounded-3xl p-6">
+      <h2 class="text-base font-bold text-on-surface mb-5 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">route</span>
+        Intermediate Stops
+      </h2>
+      <div class="relative pl-7">
+        <div class="absolute left-[10px] top-3 bottom-3 w-1 bg-outline-variant/40 rounded-full"></div>
+        <div class="flex flex-col gap-6">
+          <div *ngFor="let stop of bus.stops" class="relative flex justify-between items-start">
+            <div class="absolute -left-[28px] top-1.5 w-5 h-5 rounded-full bg-primary/20 border-2 border-primary"></div>
+            <div>
+              <h4 class="font-bold text-on-surface">{{ stop.stationName }}</h4>
+              <p *ngIf="stop.arrivalTime" class="text-xs text-on-surface-variant font-medium">Arr: {{ stop.arrivalTime }}</p>
+            </div>
+            <span *ngIf="stop.departureTime" class="text-sm font-bold text-on-surface">{{ stop.departureTime }}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 </div>
