@@ -1,37 +1,135 @@
-<div class="bus-container">
-  <div class="search-row">
-    <input
-      type="text"
-      placeholder="Search by service name, origin, or destination"
-      [(ngModel)]="searchTerm"
-      (input)="onSearch()"
-      aria-label="Search bus routes"
-    />
+<div class="bus-list-page">
+
+  <!-- Hero Section -->
+  <div class="bus-list-hero">
+    <div class="hero-content">
+      <h1>All Bus Routes</h1>
+      <p>Browse all available bus services in the network</p>
+    </div>
   </div>
 
-  <div class="status-message">
-    <ng-container *ngIf="isLoading">
-      <p>Loading buses...</p>
-    </ng-container>
-    <ng-container *ngIf="error && !isLoading">
-      <p class="error">{{ error }}</p>
-    </ng-container>
-    <ng-container *ngIf="!isLoading && !error && filteredBuses.length === 0">
-      <p>No routes found. Try a different search term.</p>
-    </ng-container>
-  </div>
-
-  <div class="bus-grid" *ngIf="!isLoading && !error && filteredBuses.length > 0">
-    <div class="bus-card" *ngFor="let bus of filteredBuses; trackBy: trackById">
-      <div class="card-header">
-        <h3>{{ bus.serviceName }}</h3>
-        <span class="badge">#{{ bus.id }}</span>
+  <!-- Search Row -->
+  <div class="bus-container">
+    <div class="search-row">
+      <div class="search-input-wrap">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input
+          type="text"
+          placeholder="Search by service name, origin, destination, or via points..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+          aria-label="Search bus routes"
+        />
+        <button *ngIf="searchTerm" class="clear-btn" (click)="clearSearch()" title="Clear search">
+          <span class="material-symbols-outlined">close</span>
+        </button>
       </div>
-      <p class="route"><strong>Route:</strong> {{ bus.origin }} → {{ bus.destination }}</p>
-      <p class="route" *ngIf="bus.viaPoints"><strong>Via:</strong> {{ bus.viaPoints }}</p>
-      <p class="route"><strong>Departs:</strong> {{ bus.departureTime }}</p>
-      <p class="route" *ngIf="bus.returnTime"><strong>Returns:</strong> {{ bus.returnTime }}</p>
-      <button class="detail-btn" (click)="onViewDetails(bus)">View Details</button>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="state-container">
+      <div class="loading-spinner">
+        <span class="material-symbols-outlined spinning">progress_activity</span>
+      </div>
+      <p class="state-text">Loading bus routes...</p>
+    </div>
+
+    <!-- API Error State -->
+    <div *ngIf="!isLoading && error" class="state-container state-error">
+      <div class="state-icon-wrap state-icon-error">
+        <span class="material-symbols-outlined">cloud_off</span>
+      </div>
+      <h3 class="state-title">Unable to Load Bus Routes</h3>
+      <p class="state-description">{{ error }}</p>
+    </div>
+
+    <!-- Whitespace / Invalid Search Message -->
+    <div *ngIf="!isLoading && !error && searchMessage" class="state-container">
+      <div class="state-icon-wrap state-icon-warn">
+        <span class="material-symbols-outlined">warning</span>
+      </div>
+      <p class="state-description">{{ searchMessage }}</p>
+    </div>
+
+    <!-- No Results Found State -->
+    <div *ngIf="!isLoading && !error && !searchMessage && filteredBuses.length === 0" class="state-container state-empty">
+      <div class="state-icon-wrap state-icon-empty">
+        <span class="material-symbols-outlined">search_off</span>
+      </div>
+      <h3 class="state-title">No Results Found</h3>
+      <p class="state-description">
+        No bus routes match "<strong>{{ searchTerm }}</strong>". <br>
+        Try a different search term or check for typos.
+      </p>
+      <button class="btn btn-primary" (click)="clearSearch()">
+        <span class="material-symbols-outlined">restart_alt</span> Show All Buses
+      </button>
+    </div>
+
+    <!-- Results Count -->
+    <div *ngIf="!isLoading && !error && filteredBuses.length > 0" class="results-count">
+      <span *ngIf="searchTerm">
+        Showing {{ filteredBuses.length }} of {{ buses.length }} bus{{ buses.length !== 1 ? 'es' : '' }}
+      </span>
+      <span *ngIf="!searchTerm">
+        {{ buses.length }} bus route{{ buses.length !== 1 ? 's' : '' }} available
+      </span>
+    </div>
+
+    <!-- Bus Grid -->
+    <div class="bus-grid" *ngIf="!isLoading && !error && filteredBuses.length > 0">
+      <div class="bus-card" *ngFor="let bus of filteredBuses; trackBy: trackById" (click)="onViewDetails(bus)">
+
+        <!-- Card Header -->
+        <div class="card-header">
+          <div class="card-header-left">
+            <h3>{{ bus.serviceName }}</h3>
+            <span class="badge">#{{ bus.id }}</span>
+          </div>
+          <span [class]="bus.isActive ? 'status-pill active' : 'status-pill inactive'">
+            {{ bus.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </div>
+
+        <!-- Route Info -->
+        <div class="route-section">
+          <div class="route-visual">
+            <div class="route-dot origin"></div>
+            <div class="route-line"></div>
+            <div class="route-dot dest"></div>
+          </div>
+          <div class="route-details">
+            <div class="route-item">
+              <span class="place">{{ bus.origin }}</span>
+              <span class="time">{{ bus.departureTime }}</span>
+            </div>
+            <div class="route-item">
+              <span class="place">{{ bus.destination }}</span>
+              <span *ngIf="bus.returnTime" class="time return-time">Return: {{ bus.returnTime }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Via Points -->
+        <div class="via-section" *ngIf="bus.viaPoints">
+          <span class="via-label">Via:</span>
+          <span class="via-text">{{ bus.viaPoints }}</span>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact-section" *ngIf="bus.contactNumber">
+          <span class="material-symbols-outlined icon-sm">call</span>
+          <span>{{ bus.contactNumber }}</span>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer">
+          <button class="detail-btn" (click)="onViewDetails(bus); $event.stopPropagation()">
+            View Details
+            <span class="material-symbols-outlined icon-sm">arrow_forward</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

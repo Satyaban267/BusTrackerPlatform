@@ -1,4 +1,5 @@
 using System.Text;
+using BusTracker.API.Middleware;
 using BusTracker.Domain.Interfaces;
 using BusTracker.Infrastructure.Data;
 using BusTracker.Infrastructure.Repositories;
@@ -9,8 +10,19 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 // ── Database ────────────────────────────────────────────────────────────────────
-builder.Services.AddDbContext<BusTrackerDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Use PostgreSQL in Production, SQLite in Development
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+
+if (builder.Environment.IsProduction())
+{
+    builder.Services.AddDbContext<BusTrackerDbContext>(options =>
+        options.UseNpgsql(connectionString));
+}
+else
+{
+    builder.Services.AddDbContext<BusTrackerDbContext>(options =>
+        options.UseSqlite(connectionString));
+}
 
 // ── Repository DI ───────────────────────────────────────────────────────────────
 builder.Services.AddScoped<IBusRepository, BusRepository>();
@@ -43,12 +55,17 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
+// ── Health Checks ───────────────────────────────────────────────────────────────
+builder.Services.AddHealthChecks();
+
 // ── CORS ────────────────────────────────────────────────────────────────────────
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? ["http://localhost:4200"];
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -57,12 +74,16 @@ builder.Services.AddCors(options =>
 // ═══════════════════════════════════════════════════════════════════════════════
 var app = builder.Build();
 
-// ── Auto-migrate & seed on startup (dev) ───────────────────────────────────────
-using (var scope = app.Services.CreateScope())
+// ── Auto-migrate on startup (development only) ──────────────────────────────────
+if (app.Environment.IsDevelopment())
 {
+    using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<BusTrackerDbContext>();
     db.Database.Migrate();
 }
+
+// ── Global Exception Handling ───────────────────────────────────────────────────
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // ── Pipeline ────────────────────────────────────────────────────────────────────
 if (app.Environment.IsDevelopment())
@@ -75,5 +96,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHealthChecks("/health");
 
 app.Run();

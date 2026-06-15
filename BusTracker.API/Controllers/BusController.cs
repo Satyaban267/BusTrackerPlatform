@@ -36,7 +36,7 @@ public class BusesController : ControllerBase
 
     // POST /api/buses — Admin only
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> CreateBus([FromBody] BusCreateDto dto)
     {
         var bus = new Bus
@@ -57,7 +57,7 @@ public class BusesController : ControllerBase
 
     // PUT /api/buses/{id} — Admin only
     [HttpPut("{id:int}")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateBus(int id, [FromBody] BusCreateDto dto)
     {
         var bus = new Bus
@@ -79,7 +79,7 @@ public class BusesController : ControllerBase
 
     // DELETE /api/buses/{id} — Admin only
     [HttpDelete("{id:int}")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteBus(int id)
     {
         var deleted = await _repo.DeleteAsync(id);

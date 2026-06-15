@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
 import { BusApiService, Bus } from '../../core/services/bus-api';
 
 @Component({
@@ -13,13 +14,15 @@ import { BusApiService, Bus } from '../../core/services/bus-api';
 export class Search implements OnInit {
   buses: Bus[] = [];
   loading = true;
+  errorMessage = '';
   from = '';
   to = '';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private busApi: BusApiService
+    private busApi: BusApiService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -32,10 +35,26 @@ export class Search implements OnInit {
 
   loadBuses() {
     this.loading = true;
-    this.busApi.getBuses(this.from, this.to).subscribe({
-      next: (buses) => { this.buses = buses; this.loading = false; },
-      error: () => { this.buses = []; this.loading = false; }
-    });
+    this.errorMessage = '';
+    this.buses = [];
+
+    this.busApi.getBuses(this.from, this.to)
+      .pipe(finalize(() => {
+        this.loading = false;
+        this.cdr.markForCheck();
+      }))
+      .subscribe({
+        next: (buses) => {
+          this.buses = buses;
+          this.cdr.markForCheck();
+        },
+        error: (err) => {
+          console.error('Search loadBuses error', err);
+          this.buses = [];
+          this.errorMessage = err?.message || 'Unable to load buses. Please check your network.';
+          this.cdr.markForCheck();
+        }
+      });
   }
 
   goToBusDetail(id: number) {

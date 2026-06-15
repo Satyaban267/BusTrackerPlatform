@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -18,7 +18,11 @@ export class AdminLogin {
   loading = false;
   errorMessage = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -34,15 +38,10 @@ export class AdminLogin {
 
     this.loading = true;
 
-    // The backend accepts "username" field — send whatever the user typed
-    this.http.post<{ token: string; expiresAt: string; username: string }>(
-      'http://localhost:5000/api/auth/login',
-      { username: this.identifier.trim(), password: this.password }
-    ).subscribe({
-      next: (res) => {
-        localStorage.setItem('admin_token', res.token);
-        localStorage.setItem('admin_user', res.username);
+    this.authService.login(this.identifier.trim(), this.password).subscribe({
+      next: () => {
         this.loading = false;
+        this.cdr.markForCheck();
         this.router.navigate(['/admin/dashboard']);
       },
       error: (err) => {
@@ -50,6 +49,7 @@ export class AdminLogin {
         this.errorMessage = err.status === 401
           ? 'Invalid username or password. Please try again.'
           : 'Unable to connect to server. Please try later.';
+        this.cdr.markForCheck();
       }
     });
   }

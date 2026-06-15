@@ -18,7 +18,7 @@
   <div *ngIf="error && !loading" class="flex flex-col items-center justify-center py-32 gap-4 px-6 text-center">
     <span class="material-symbols-outlined text-error" style="font-size: 48px;">error_outline</span>
     <h2 class="text-xl font-bold text-on-surface">Bus Not Found</h2>
-    <p class="text-on-surface-variant">This bus service could not be found. It may have been removed.</p>
+    <p class="text-on-surface-variant">{{ errorMessage || 'This bus service could not be found. It may have been removed.' }}</p>
     <button (click)="goBack()" class="mt-4 bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold">
       Back to Search
     </button>

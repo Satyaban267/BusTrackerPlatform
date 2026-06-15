@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface BusStop {
   id: number;
@@ -27,7 +28,7 @@ export interface Bus {
   providedIn: 'root',
 })
 export class BusApiService {
-  private apiUrl = 'http://localhost:5000/api/buses';
+  private apiUrl = `${environment.apiBaseUrl}/buses`;
 
   constructor(private http: HttpClient) {}
 

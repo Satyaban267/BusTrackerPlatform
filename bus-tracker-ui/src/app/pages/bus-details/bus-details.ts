@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
 import { BusApiService, Bus } from '../../core/services/bus-api';
 
 @Component({
@@ -14,21 +15,44 @@ export class BusDetails implements OnInit {
   bus: Bus | null = null;
   loading = true;
   error = false;
+  errorMessage = '';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private busApi: BusApiService
+    private busApi: BusApiService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (!id) { this.error = true; this.loading = false; return; }
+    const idParam = this.route.snapshot.paramMap.get('id');
+    const id = Number(idParam);
+    if (!idParam || isNaN(id) || id <= 0) {
+      this.error = true;
+      this.loading = false;
+      this.errorMessage = 'Invalid bus ID. Please return to the search page.';
+      return;
+    }
 
-    this.busApi.getBusById(id).subscribe({
-      next: (bus) => { this.bus = bus; this.loading = false; },
-      error: () => { this.error = true; this.loading = false; }
-    });
+    this.busApi.getBusById(id)
+      .pipe(finalize(() => {
+        this.loading = false;
+        this.cdr.markForCheck();
+      }))
+      .subscribe({
+        next: (bus) => {
+          this.bus = bus;
+          this.cdr.markForCheck();
+        },
+        error: (err) => {
+          console.error('Bus details error', err);
+          this.error = true;
+          this.errorMessage = err.status === 404
+            ? 'This bus could not be found.'
+            : 'Unable to load bus details. Please try again.';
+          this.cdr.markForCheck();
+        }
+      });
   }
 
   goBack() {

@@ -40,7 +40,7 @@ public class BusRegistrationsController : ControllerBase
 
     // GET /api/registrations — Admin only: view all submissions
     [HttpGet]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetRegistrations()
     {
         var all = await _repo.GetAllAsync();
@@ -49,7 +49,7 @@ public class BusRegistrationsController : ControllerBase
 
     // GET /api/registrations/{id} — Admin only
     [HttpGet("{id:int}")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetRegistration(int id)
     {
         var reg = await _repo.GetByIdAsync(id);
@@ -59,7 +59,7 @@ public class BusRegistrationsController : ControllerBase
 
     // PUT /api/registrations/{id}/status — Admin only: approve or reject
     [HttpPut("{id:int}/status")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateStatus(int id, [FromBody] UpdateRegistrationStatusDto dto)
     {
         if (!Enum.TryParse<RegistrationStatus>(dto.Status, ignoreCase: true, out var status))

@@ -10,125 +10,154 @@
         <span class="material-symbols-rounded icon-filled" style="color: var(--color-primary);">pending_actions</span>
         <div>
           <p class="text-xs">Pending Tasks</p>
-          <p class="text-bold h3" style="font-size: 1.25rem;">14 Requests</p>
+          <p class="text-bold h3" style="font-size: 1.25rem;">{{ totalPending }} Requests</p>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Tab Switcher -->
-  <div class="flex gap-md mb-xl">
-    <button class="btn btn-primary">
-      <span class="material-symbols-rounded">verified</span> New Registrations
-    </button>
-    <button class="btn btn-secondary">
-      <span class="material-symbols-rounded">group</span> Community Suggestions
+  <!-- Error Banner -->
+  <div *ngIf="errorMessage" class="mb-xl flex items-center gap-md" style="background: var(--color-primary-light); padding: 1rem; border-radius: var(--radius-md);">
+    <span class="material-symbols-rounded" style="color: var(--color-error);">error</span>
+    <span>{{ errorMessage }}</span>
+    <button class="btn btn-secondary" style="margin-left: auto; padding: 0.5rem 1rem;" (click)="errorMessage = ''">
+      <span class="material-symbols-rounded">close</span>
     </button>
   </div>
 
-  <!-- List of Requests -->
-  <div class="flex flex-col gap-xl">
-    
-    <!-- Entry 1 -->
-    <div class="card flex gap-xl items-start relative overflow-hidden" style="border-left: 6px solid var(--color-tertiary);">
-      <div class="w-1/4" style="flex: 0 0 250px;">
-        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=600" 
-             class="w-full h-40 object-cover rounded-md shadow-sm" alt="Bus">
+  <!-- Tab Switcher -->
+  <div class="flex gap-md mb-xl">
+    <button class="btn" [class.btn-primary]="activeTab === 'registrations'" [class.btn-secondary]="activeTab !== 'registrations'" (click)="switchTab('registrations')">
+      <span class="material-symbols-rounded">verified</span> New Registrations ({{ pendingRegistrations.length }})
+    </button>
+    <button class="btn" [class.btn-primary]="activeTab === 'suggestions'" [class.btn-secondary]="activeTab !== 'suggestions'" (click)="switchTab('suggestions')">
+      <span class="material-symbols-rounded">group</span> Community Suggestions ({{ pendingSuggestions.length }})
+    </button>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="(activeTab === 'registrations' && loadingRegistrations) || (activeTab === 'suggestions' && loadingSuggestions)" class="flex items-center justify-center" style="padding: 4rem;">
+    <span class="material-symbols-rounded animate-spin" style="font-size: 48px; color: var(--color-primary);">refresh</span>
+  </div>
+
+  <!-- ═══ Registrations Tab ═══ -->
+  <div *ngIf="activeTab === 'registrations' && !loadingRegistrations" class="flex flex-col gap-xl">
+    <div *ngIf="registrations.length === 0" class="flex flex-col items-center justify-center" style="padding: 4rem;">
+      <span class="material-symbols-rounded" style="font-size: 64px; color: var(--color-border);">inbox</span>
+      <p class="subtitle" style="margin-top: 1rem;">No registrations yet</p>
+    </div>
+
+    <div *ngFor="let reg of registrations" class="card flex gap-xl items-start relative overflow-hidden" [style.border-left]="'6px solid ' + (reg.status === 'Pending' ? 'var(--color-tertiary)' : reg.status === 'Approved' ? 'var(--color-secondary)' : 'var(--color-error)')">
+      <div style="flex: 0 0 80px;" class="flex items-center justify-center bg-surface rounded-md h-20">
+        <span class="material-symbols-rounded" style="font-size: 40px; color: var(--color-primary); opacity: 0.5;">directions_bus</span>
       </div>
 
       <div class="flex-1">
         <div class="flex justify-between items-start mb-md">
           <div>
-            <span class="badge badge-primary mb-sm">Express Service</span>
-            <h3 class="h3">Hearth-Link #442</h3>
+            <span class="badge badge-primary mb-sm" [style.background]="reg.status === 'Approved' ? 'var(--color-success)' : reg.status === 'Rejected' ? 'var(--color-error)' : ''" [style.color]="reg.status === 'Approved' ? 'var(--color-success-text)' : reg.status === 'Rejected' ? 'white' : ''">{{ reg.status }}</span>
+            <h3 class="h3">{{ reg.serviceName }}</h3>
           </div>
-          <div class="text-right">
-            <p class="text-xs">Owner Contact</p>
-            <p class="text-bold">+91 98765-43210</p>
-            <p class="text-small italic">Rajesh Kumar Motors</p>
+          <div style="text-align: right;">
+            <p class="text-xs">Submitted By</p>
+            <p class="text-bold">{{ reg.submittedByName }}</p>
+            <p class="text-small italic">{{ reg.submittedByEmail }}</p>
           </div>
         </div>
 
-        <!-- Route Visualization -->
-        <div class="flex items-center gap-xl py-sm">
+        <div class="flex items-center gap-xl" style="padding: 0.5rem 0;">
           <div class="flex flex-col items-center">
-            <div class="w-3 h-3 rounded-full" style="background: var(--color-secondary);"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--color-secondary);"></div>
             <div style="width: 2px; height: 40px; background: var(--color-border);"></div>
-            <div class="w-3 h-3 rounded-full" style="background: var(--color-primary);"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--color-primary);"></div>
           </div>
-          <div class="flex flex-col justify-between h-16">
+          <div class="flex flex-col justify-between" style="height: 64px;">
             <div>
-              <p class="text-xs" style="line-height: 1;">Departure</p>
-              <p class="text-bold">Main Square Terminal</p>
+              <p class="text-xs" style="line-height: 1;">Origin</p>
+              <p class="text-bold">{{ reg.origin }}</p>
             </div>
             <div>
               <p class="text-xs" style="line-height: 1;">Destination</p>
-              <p class="text-bold">Riverside Community Hub</p>
+              <p class="text-bold">{{ reg.destination }}</p>
             </div>
           </div>
-          
-          <div class="ml-xl border-l pl-xl">
-            <p class="text-xs mb-xs">Proposed Timings</p>
-            <div class="flex gap-sm">
-              <span class="badge badge-surface">06:30 AM</span>
-              <span class="badge badge-surface">02:15 PM</span>
-            </div>
+          <div style="margin-left: 2rem; border-left: 1px solid var(--color-border); padding-left: 2rem;">
+            <p class="text-xs" style="margin-bottom: 0.25rem;">Departure</p>
+            <span class="badge badge-surface">{{ reg.departureTime }}</span>
+            <span *ngIf="reg.returnTime" class="badge badge-surface" style="margin-left: 0.5rem;">{{ reg.returnTime }}</span>
           </div>
         </div>
+
+        <p *ngIf="reg.viaPoints" class="text-small text-muted" style="margin-top: 0.5rem;"><strong>Via:</strong> {{ reg.viaPoints }}</p>
+        <p *ngIf="reg.adminRemarks" class="text-small" style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-surface); border-radius: var(--radius-sm);"><strong>Admin Remarks:</strong> {{ reg.adminRemarks }}</p>
       </div>
 
-      <div class="flex flex-col gap-sm">
-        <button class="btn btn-primary" style="background: var(--color-secondary);">
+      <div *ngIf="reg.status === 'Pending'" class="flex flex-col gap-sm">
+        <button class="btn btn-primary" style="background: var(--color-secondary);" (click)="openRemarksModal(reg.id, 'Approved')" [disabled]="actionLoading['reg-' + reg.id]">
           <span class="material-symbols-rounded">check_circle</span> Approve
         </button>
-        <button class="btn btn-secondary" style="color: var(--color-error);">
+        <button class="btn btn-secondary" style="color: var(--color-error);" (click)="openRemarksModal(reg.id, 'Rejected')" [disabled]="actionLoading['reg-' + reg.id]">
           <span class="material-symbols-rounded">cancel</span> Reject
         </button>
       </div>
     </div>
+  </div>
 
-    <!-- Entry 2: Suggestion -->
-    <div class="card flex gap-xl items-start relative overflow-hidden" style="border-left: 6px solid var(--color-secondary);">
-      <div class="w-1/4 flex items-center justify-center bg-surface rounded-md h-40" style="flex: 0 0 250px;">
-        <span class="material-symbols-rounded" style="font-size: 64px; color: var(--color-secondary); opacity: 0.3;">volunteer_activism</span>
+  <!-- ═══ Suggestions Tab ═══ -->
+  <div *ngIf="activeTab === 'suggestions' && !loadingSuggestions" class="flex flex-col gap-xl">
+    <div *ngIf="suggestions.length === 0" class="flex flex-col items-center justify-center" style="padding: 4rem;">
+      <span class="material-symbols-rounded" style="font-size: 64px; color: var(--color-border);">inbox</span>
+      <p class="subtitle" style="margin-top: 1rem;">No suggestions yet</p>
+    </div>
+
+    <div *ngFor="let sug of suggestions" class="card flex gap-xl items-start relative overflow-hidden" [style.border-left]="'6px solid ' + (sug.status === 'Pending' ? 'var(--color-secondary)' : sug.status === 'Reviewed' ? 'var(--color-tertiary)' : 'var(--color-border)')">
+      <div style="flex: 0 0 80px;" class="flex items-center justify-center bg-surface rounded-md h-20">
+        <span class="material-symbols-rounded" style="font-size: 40px; color: var(--color-secondary); opacity: 0.5;">volunteer_activism</span>
       </div>
 
       <div class="flex-1">
         <div class="flex justify-between items-start mb-md">
           <div>
-            <span class="badge badge-primary" style="background: var(--color-primary-light);">New Route Idea</span>
-            <h3 class="h3">Valley Primary School Loop</h3>
+            <span class="badge badge-primary" [style.background]="sug.status === 'Reviewed' ? 'var(--color-success)' : sug.status === 'Dismissed' ? 'var(--color-border)' : 'var(--color-primary-light)'" [style.color]="sug.status === 'Reviewed' ? 'var(--color-success-text)' : sug.status === 'Dismissed' ? 'var(--color-text-muted)' : ''">{{ sug.status === 'Pending' ? 'New Route Idea' : sug.status }}</span>
+            <h3 class="h3">{{ sug.suggestedFrom }} → {{ sug.suggestedTo }}</h3>
           </div>
-          <div class="text-right">
+          <div style="text-align: right;">
             <p class="text-xs">Suggested By</p>
-            <p class="text-bold">Amit S. & 42 others</p>
+            <p class="text-bold">{{ sug.submittedByName }}</p>
+            <p *ngIf="sug.submittedByEmail" class="text-small italic">{{ sug.submittedByEmail }}</p>
           </div>
         </div>
 
-        <p class="text-muted text-small bg-surface p-md rounded-md border">
-          "Currently students have to walk 4km to reach the main road. A morning and afternoon pickup loop between the Valley School and the Junction would benefit 150+ students daily."
+        <p *ngIf="sug.viaPoints" class="text-small text-muted" style="margin-bottom: 0.5rem;"><strong>Via:</strong> {{ sug.viaPoints }}</p>
+        <p *ngIf="sug.reason" class="text-muted text-small" style="background: var(--color-surface); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+          "{{ sug.reason }}"
         </p>
       </div>
 
-      <div class="flex flex-col gap-sm">
-        <button class="btn btn-primary">
-          <span class="material-symbols-rounded">add_task</span> Open Tender
+      <div *ngIf="sug.status === 'Pending'" class="flex flex-col gap-sm">
+        <button class="btn btn-primary" (click)="updateSuggestionStatus(sug.id, 'Reviewed')" [disabled]="actionLoading['sug-' + sug.id]">
+          <span class="material-symbols-rounded">check_circle</span> Mark Reviewed
         </button>
-        <button class="btn btn-secondary">
-          <span class="material-symbols-rounded">archive</span> Archive
+        <button class="btn btn-secondary" style="color: var(--color-error);" (click)="updateSuggestionStatus(sug.id, 'Dismissed')" [disabled]="actionLoading['sug-' + sug.id]">
+          <span class="material-symbols-rounded">archive</span> Dismiss
         </button>
       </div>
     </div>
-
   </div>
 
-  <!-- Footer -->
-  <footer class="mt-xxl pt-xl border-t flex justify-between items-center">
-    <p class="text-muted text-small">Showing <span class="text-bold text-main">2</span> of <span class="text-bold text-main">14</span> pending approvals</p>
-    <div class="flex gap-sm">
-      <button class="btn-icon" style="width: 40px; height: 40px;"><span class="material-symbols-rounded">chevron_left</span></button>
-      <button class="btn btn-primary" style="padding: 0 1rem; width: 40px; height: 40px; border-radius: 50%;">1</button>
-      <button class="btn-icon" style="width: 40px; height: 40px;"><span class="material-symbols-rounded">chevron_right</span></button>
+  <!-- Remarks Modal -->
+  <div *ngIf="showRemarksModal" class="fixed inset-0 z-50 flex items-center justify-center" style="background: rgba(0,0,0,0.5);">
+    <div class="card" style="max-width: 480px; width: 100%; padding: 2rem;">
+      <h3 class="h3 mb-md">{{ remarksTargetAction === 'Approved' ? 'Approve' : 'Reject' }} Registration</h3>
+      <p class="text-muted mb-md">Add optional remarks for this action:</p>
+      <textarea class="w-full" style="padding: 0.75rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); min-height: 80px; resize: vertical;" [(ngModel)]="adminRemarks" placeholder="Optional admin remarks..."></textarea>
+      <div class="flex gap-md justify-end" style="margin-top: 1.5rem;">
+        <button class="btn btn-secondary" (click)="showRemarksModal = false">Cancel</button>
+        <button class="btn btn-primary" [style.background]="remarksTargetAction === 'Approved' ? 'var(--color-secondary)' : 'var(--color-error)'" (click)="confirmAction()">
+          <span class="material-symbols-rounded">{{ remarksTargetAction === 'Approved' ? 'check_circle' : 'cancel' }}</span>
+          {{ remarksTargetAction === 'Approved' ? 'Approve' : 'Reject' }}
+        </button>
+      </div>
     </div>
-  </footer>
+  </div>
 </div>

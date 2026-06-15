@@ -37,7 +37,7 @@ public class RouteSuggestionsController : ControllerBase
 
     // GET /api/suggestions — Admin only: view all suggestions
     [HttpGet]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetSuggestions()
     {
         var all = await _repo.GetAllAsync();
@@ -46,7 +46,7 @@ public class RouteSuggestionsController : ControllerBase
 
     // GET /api/suggestions/{id} — Admin only
     [HttpGet("{id:int}")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> GetSuggestion(int id)
     {
         var suggestion = await _repo.GetByIdAsync(id);
@@ -56,7 +56,7 @@ public class RouteSuggestionsController : ControllerBase
 
     // PUT /api/suggestions/{id}/status — Admin only: mark reviewed or dismissed
     [HttpPut("{id:int}/status")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateStatus(int id, [FromBody] UpdateSuggestionStatusDto dto)
     {
         if (!Enum.TryParse<SuggestionStatus>(dto.Status, ignoreCase: true, out var status))

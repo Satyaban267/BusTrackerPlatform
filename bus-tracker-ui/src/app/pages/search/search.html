@@ -1,98 +1,102 @@
-<div class="bg-background text-on-background min-h-screen pb-10">
+<div class="search-page">
 
-  <!-- Header -->
-  <header class="bg-surface w-full h-16 sticky top-0 z-40 border-b border-outline-variant/30 shadow-sm">
-    <div class="flex justify-between items-center px-6 w-full max-w-7xl mx-auto h-full">
-      <div class="flex items-center gap-3">
-        <button (click)="goHome()" class="p-2 -ml-2 text-primary rounded-full hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined">arrow_back</span>
-        </button>
-        <span class="text-lg font-bold text-primary tracking-tight">Gramin Path</span>
-      </div>
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto px-4 md:px-6 py-6">
+  <main class="search-main">
 
     <!-- Search Context Header -->
-    <div class="mb-8 relative rounded-3xl overflow-hidden bg-surface-container-low p-6 md:p-10">
-      <div class="relative z-10">
-        <span class="label-md text-primary font-bold tracking-[0.05em] block mb-2">SEARCH RESULTS</span>
-        <h1 class="text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight">
+    <div class="search-context">
+      <div class="search-context-inner">
+        <span class="search-label">SEARCH RESULTS</span>
+        <h1 class="search-title">
           {{ from || 'All Origins' }}
-          <span class="text-primary-container mx-2">→</span>
+          <span class="search-arrow">→</span>
           {{ to || 'All Destinations' }}
         </h1>
-        <p class="text-on-surface-variant mt-2 font-medium">
+        <p class="search-subtitle">
           <span *ngIf="!loading">Found {{ buses.length }} bus{{ buses.length !== 1 ? 'es' : '' }}</span>
           <span *ngIf="loading">Searching...</span>
         </p>
       </div>
-      <div class="absolute right-[-5%] top-[-10%] w-64 h-64 bg-primary-fixed-dim opacity-20 rounded-full blur-3xl"></div>
+      <div class="search-context-glow"></div>
     </div>
 
     <!-- Loading State -->
-    <div *ngIf="loading" class="flex flex-col items-center justify-center py-20 gap-4">
-      <span class="material-symbols-outlined text-primary animate-spin" style="font-size: 48px;">refresh</span>
-      <p class="text-on-surface-variant font-medium">Finding buses for you...</p>
+    <div *ngIf="loading" class="state-container">
+      <div class="loading-spinner">
+        <span class="material-symbols-outlined spinning">progress_activity</span>
+      </div>
+      <p class="state-text">Finding buses for you...</p>
     </div>
 
-    <!-- Empty State -->
-    <div *ngIf="!loading && buses.length === 0" class="text-center py-16 px-6">
-      <span class="material-symbols-outlined text-on-surface-variant/40" style="font-size: 64px;">directions_bus</span>
-      <h3 class="text-xl font-bold text-on-surface mt-4 mb-2">No Buses Found</h3>
-      <p class="text-on-surface-variant mb-6 max-w-sm mx-auto">
-        We couldn't find any buses matching your search. Try a different route.
+    <!-- Error State -->
+    <div *ngIf="!loading && errorMessage" class="state-container state-error">
+      <div class="state-icon-wrap state-icon-error">
+        <span class="material-symbols-outlined">error</span>
+      </div>
+      <h3 class="state-title">Unable to load bus results</h3>
+      <p class="state-description">{{ errorMessage }}</p>
+      <button (click)="loadBuses()" class="btn btn-primary">
+        <span class="material-symbols-outlined">refresh</span> Retry
+      </button>
+    </div>
+
+    <!-- Empty / No Results State -->
+    <div *ngIf="!loading && !errorMessage && buses.length === 0" class="state-container state-empty">
+      <div class="state-icon-wrap state-icon-empty">
+        <span class="material-symbols-outlined">search_off</span>
+      </div>
+      <h3 class="state-title">No Results Found</h3>
+      <p class="state-description">
+        We couldn't find any buses matching
+        <strong>{{ from || 'Any origin' }}</strong> →
+        <strong>{{ to || 'Any destination' }}</strong>.
+        <br>Try a different route or check for typos.
       </p>
-      <button (click)="goHome()" class="bg-primary text-on-primary px-8 py-3 rounded-full font-bold active:scale-95 transition-transform">
-        Search Again
+      <button (click)="goHome()" class="btn btn-primary">
+        <span class="material-symbols-outlined">search</span> Search Again
       </button>
     </div>
 
     <!-- Bus Results -->
-    <div *ngIf="!loading && buses.length > 0" class="flex flex-col gap-5">
+    <div *ngIf="!loading && !errorMessage && buses.length > 0" class="results-list">
 
       <div
         *ngFor="let bus of buses"
         (click)="goToBusDetail(bus.id)"
-        class="bg-surface-container rounded-3xl overflow-hidden flex flex-col md:flex-row relative cursor-pointer hover:shadow-lg transition-shadow duration-200">
+        class="bus-result-card">
 
         <!-- Left Accent -->
-        <div class="absolute left-0 top-0 bottom-0 w-2 bg-primary hidden md:block rounded-l-3xl"></div>
+        <div class="card-accent"></div>
 
         <!-- Main Content -->
-        <div class="p-6 flex-1">
-          <div class="flex flex-wrap justify-between items-start gap-4 mb-4">
+        <div class="card-body">
+          <div class="card-top-row">
             <div>
-              <h2 class="text-2xl font-extrabold text-on-surface tracking-tight">{{ bus.serviceName }}</h2>
-              <p *ngIf="bus.contactNumber" class="text-on-surface-variant font-medium flex items-center gap-1 mt-1 text-sm">
-                <span class="material-symbols-outlined text-sm">call</span>
+              <h2 class="bus-name">{{ bus.serviceName }}</h2>
+              <p *ngIf="bus.contactNumber" class="bus-contact">
+                <span class="material-symbols-outlined icon-sm">call</span>
                 {{ bus.contactNumber }}
               </p>
             </div>
-            <span
-              [class]="bus.isActive
-                ? 'bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest'
-                : 'bg-error-container text-error px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest'">
+            <span [class]="bus.isActive ? 'status-badge active' : 'status-badge inactive'">
               {{ bus.isActive ? 'Active' : 'Inactive' }}
             </span>
           </div>
 
           <!-- Route Thread -->
-          <div class="flex items-center gap-5 py-3">
-            <div class="flex flex-col items-center">
-              <div class="w-3.5 h-3.5 rounded-full border-[3px] border-primary bg-surface z-10"></div>
-              <div class="w-1 h-10 bg-outline-variant/40"></div>
-              <div class="w-3.5 h-3.5 rounded-full border-[3px] border-secondary bg-surface z-10"></div>
+          <div class="route-thread">
+            <div class="route-dots">
+              <div class="dot dot-origin"></div>
+              <div class="dot-line"></div>
+              <div class="dot dot-dest"></div>
             </div>
-            <div class="flex-1 flex flex-col justify-between" style="min-height: 56px;">
-              <div class="flex justify-between items-center w-full">
-                <span class="text-base font-bold text-on-surface">{{ bus.origin }}</span>
-                <span class="text-sm font-bold text-primary">{{ bus.departureTime }}</span>
+            <div class="route-info">
+              <div class="route-row">
+                <span class="route-place">{{ bus.origin }}</span>
+                <span class="route-time">{{ bus.departureTime }}</span>
               </div>
-              <div class="flex justify-between items-center w-full">
-                <span class="text-base font-bold text-on-surface">{{ bus.destination }}</span>
-                <span *ngIf="bus.returnTime" class="text-xs font-medium text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full">
+              <div class="route-row">
+                <span class="route-place">{{ bus.destination }}</span>
+                <span *ngIf="bus.returnTime" class="route-return">
                   Returns: {{ bus.returnTime }}
                 </span>
               </div>
@@ -100,30 +104,28 @@
           </div>
 
           <!-- Via Points -->
-          <div *ngIf="bus.viaPoints" class="mt-2 flex flex-wrap gap-1.5 items-center">
-            <span class="text-xs text-on-surface-variant font-medium">Via:</span>
-            <span
-              *ngFor="let stop of getViaList(bus.viaPoints)"
-              class="bg-surface-container-high text-on-surface-variant text-xs px-2 py-0.5 rounded-full font-medium">
+          <div *ngIf="bus.viaPoints" class="via-points">
+            <span class="via-label">Via:</span>
+            <span *ngFor="let stop of getViaList(bus.viaPoints)" class="via-chip">
               {{ stop }}
             </span>
           </div>
         </div>
 
         <!-- Action Panel -->
-        <div class="bg-surface-container-high p-5 md:w-56 flex flex-row md:flex-col justify-between md:justify-center items-center gap-3">
+        <div class="card-actions">
           <button
             (click)="goToBusDetail(bus.id); $event.stopPropagation()"
-            class="bg-primary text-on-primary w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 active:opacity-80 transition-all text-sm">
+            class="btn btn-primary btn-block">
             View Details
-            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            <span class="material-symbols-outlined icon-sm">arrow_forward</span>
           </button>
           <a
             *ngIf="bus.contactNumber"
             [href]="'tel:' + getCallableNumber(bus.contactNumber)"
             (click)="$event.stopPropagation()"
-            class="bg-surface-container-lowest border border-outline-variant/15 text-on-surface w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 active:opacity-80 transition-all text-sm">
-            <span class="material-symbols-outlined text-primary text-lg">call</span>
+            class="btn btn-outline btn-block">
+            <span class="material-symbols-outlined icon-sm">call</span>
             Call
           </a>
         </div>
