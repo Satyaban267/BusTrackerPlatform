@@ -16,7 +16,7 @@ export class RegisterBus {
   contactNumber = '';
   origin = '';
   destination = '';
-  viaPoints = '';
+  viaPointsList: { name: string, time: string }[] = [{ name: '', time: '' }];
   departureTime = '';
   returnTime = '';
   ownerName = '';
@@ -32,6 +32,18 @@ export class RegisterBus {
     private cdr: ChangeDetectorRef
   ) {}
 
+  addViaPoint() {
+    this.viaPointsList.push({ name: '', time: '' });
+  }
+
+  removeViaPoint(index: number) {
+    if (this.viaPointsList.length > 1) {
+      this.viaPointsList.splice(index, 1);
+    } else {
+      this.viaPointsList[0] = { name: '', time: '' };
+    }
+  }
+
   submit() {
     this.errorMessage = '';
 
@@ -41,6 +53,11 @@ export class RegisterBus {
       return;
     }
 
+    const formattedVia = this.viaPointsList
+      .map(v => v.name.trim() + (v.time.trim() ? ` (${v.time.trim()})` : ''))
+      .filter(v => v !== '')
+      .join(', ');
+
     this.loading = true;
 
     this.registrationApi.submit({
@@ -48,7 +65,7 @@ export class RegisterBus {
       contactNumber: this.contactNumber.trim() || null,
       origin: this.origin.trim(),
       destination: this.destination.trim(),
-      viaPoints: this.viaPoints.trim() || null,
+      viaPoints: formattedVia || null,
       departureTime: this.departureTime.trim(),
       returnTime: this.returnTime.trim() || null,
       submittedByName: this.ownerName.trim(),
@@ -72,7 +89,7 @@ export class RegisterBus {
     this.contactNumber = '';
     this.origin = '';
     this.destination = '';
-    this.viaPoints = '';
+    this.viaPointsList = [{ name: '', time: '' }];
     this.departureTime = '';
     this.returnTime = '';
     this.ownerName = '';

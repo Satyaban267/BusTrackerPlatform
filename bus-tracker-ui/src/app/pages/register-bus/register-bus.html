@@ -51,9 +51,33 @@
                 </div>
               </div>
             </div>
-            <div class="group">
-              <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1" for="via-points">Via Points (optional)</label>
-              <input class="w-full h-16 px-6 rounded-xl bg-surface-container-high border-none focus:ring-2 focus:ring-primary text-lg font-semibold placeholder:text-outline/50 transition-all" id="via-points" placeholder="e.g. Khordha, Rusipada" type="text" [(ngModel)]="viaPoints" name="viaPoints">
+            <div class="group space-y-4">
+              <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Via Points (optional)</label>
+              
+              <div *ngFor="let point of viaPointsList; let i = index" class="flex gap-4 items-center animate-fade">
+                <div class="flex-1">
+                  <input class="w-full h-16 px-6 rounded-xl bg-surface-container-high border-none focus:ring-2 focus:ring-primary text-lg font-semibold placeholder:text-outline/50 transition-all" 
+                         placeholder="Stop Name (e.g. Khordha)" 
+                         type="text" 
+                         [(ngModel)]="point.name" 
+                         name="viaName-{{i}}">
+                </div>
+                <div class="w-36">
+                  <input class="w-full h-16 px-6 rounded-xl bg-surface-container-high border-none focus:ring-2 focus:ring-primary text-lg font-semibold placeholder:text-outline/50 transition-all" 
+                         placeholder="Time (optional)" 
+                         type="text" 
+                         [(ngModel)]="point.time" 
+                         name="viaTime-{{i}}">
+                </div>
+                <button type="button" (click)="removeViaPoint(i)" class="h-16 w-16 flex items-center justify-center bg-surface-container-high hover:bg-error-container text-error rounded-xl transition-all active:scale-95 border-none cursor-pointer" title="Remove stop">
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+
+              <button type="button" (click)="addViaPoint()" class="bg-surface-container-high hover:bg-surface-container-highest text-primary font-bold py-3 px-6 rounded-xl border-none cursor-pointer transition-all active:scale-95 flex items-center gap-2 text-sm">
+                <span class="material-symbols-outlined text-sm">add</span>
+                Add Via Point
+              </button>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="group">

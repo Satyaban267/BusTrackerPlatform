@@ -10,7 +10,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
     <div class="admin-container flex">
       <aside class="admin-sidebar glass-dark p-xl">
         <div class="logo mb-xxl flex items-center gap-sm">
-          <span class="material-symbols-rounded icon-filled" style="color: var(--color-primary); font-size: 32px;">dashboard</span>
+          <span class="material-symbols-rounded icon-filled" style="color: var(--color-tertiary); font-size: 32px;">dashboard</span>
           <h2 class="h3" style="color: white; margin: 0;">Admin Portal</h2>
         </div>
         <nav class="flex flex-col gap-md">
@@ -37,6 +37,11 @@ import { RouterOutlet, RouterLink } from '@angular/router';
   styles: [`
     .admin-container { min-height: 100vh; background: #fdf2ef; }
     .admin-sidebar { width: 300px; min-height: 100vh; position: sticky; top: 0; }
+    .glass-dark {
+      background: #230b05;
+      box-shadow: 4px 0 25px rgba(45, 10, 2, 0.15);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
     .admin-nav-link {
       display: flex;
       items-center: center;

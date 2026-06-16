@@ -40,6 +40,23 @@ public class BusRegistrationRepository : IBusRegistrationRepository
         var registration = await _db.BusRegistrations.FindAsync(id);
         if (registration is null) return null;
 
+        // Auto-create active Bus entry if status transitions to Approved
+        if (registration.Status != RegistrationStatus.Approved && status == RegistrationStatus.Approved)
+        {
+            var bus = new Bus
+            {
+                ServiceName = registration.ServiceName,
+                ContactNumber = registration.ContactNumber,
+                Origin = registration.Origin,
+                Destination = registration.Destination,
+                ViaPoints = registration.ViaPoints,
+                DepartureTime = registration.DepartureTime,
+                ReturnTime = registration.ReturnTime,
+                IsActive = true
+            };
+            _db.Buses.Add(bus);
+        }
+
         registration.Status = status;
         registration.AdminRemarks = adminRemarks;
         await _db.SaveChangesAsync();

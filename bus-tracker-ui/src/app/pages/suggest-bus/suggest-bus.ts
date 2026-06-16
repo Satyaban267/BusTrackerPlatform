@@ -15,7 +15,7 @@ export class SuggestBus {
   submittedByName = '';
   suggestedFrom = '';
   suggestedTo = '';
-  viaPoints = '';
+  viaPointsList: { name: string, time: string }[] = [{ name: '', time: '' }];
   reason = '';
   submittedByEmail = '';
 
@@ -29,6 +29,18 @@ export class SuggestBus {
     private cdr: ChangeDetectorRef
   ) {}
 
+  addViaPoint() {
+    this.viaPointsList.push({ name: '', time: '' });
+  }
+
+  removeViaPoint(index: number) {
+    if (this.viaPointsList.length > 1) {
+      this.viaPointsList.splice(index, 1);
+    } else {
+      this.viaPointsList[0] = { name: '', time: '' };
+    }
+  }
+
   submit() {
     this.errorMessage = '';
 
@@ -37,12 +49,17 @@ export class SuggestBus {
       return;
     }
 
+    const formattedVia = this.viaPointsList
+      .map(v => v.name.trim() + (v.time.trim() ? ` (${v.time.trim()})` : ''))
+      .filter(v => v !== '')
+      .join(', ');
+
     this.loading = true;
 
     this.suggestionApi.submit({
       suggestedFrom: this.suggestedFrom.trim(),
       suggestedTo: this.suggestedTo.trim(),
-      viaPoints: this.viaPoints.trim() || null,
+      viaPoints: formattedVia || null,
       reason: this.reason.trim() || null,
       submittedByName: this.submittedByName.trim(),
       submittedByEmail: this.submittedByEmail.trim() || null,
@@ -64,7 +81,7 @@ export class SuggestBus {
     this.submittedByName = '';
     this.suggestedFrom = '';
     this.suggestedTo = '';
-    this.viaPoints = '';
+    this.viaPointsList = [{ name: '', time: '' }];
     this.reason = '';
     this.submittedByEmail = '';
     this.submitted = false;
